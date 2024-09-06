@@ -7,7 +7,17 @@
     margin: 0;
     padding: 0;
 }
+:root{
+    --body-background: rgb(176, 196, 222);
+    /* header */
+    --header-background: rgb(30, 144, 255);
+    --header-text-color: rgb(255, 255, 255);
+    --header-text-hover-color: rgb(0, 0, 255);
+    --header-text-active-background: rgb(0, 0, 255);
+    /* main */
+    --main-background: rgb(135, 206, 250);
 
+}
 body {
     margin: 0 40px;
 
@@ -16,7 +26,7 @@ body {
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: rgb(224, 217, 217);
+    background-color: var(--body-background);
 }
 
 code {

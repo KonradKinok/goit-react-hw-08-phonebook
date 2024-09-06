@@ -1,0 +1,40 @@
+.nav {
+    display: flex;
+    font-weight: 800;
+    font-size: 1.5rem;
+    
+    a{
+        color: white;
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 800;
+        transition: color .75s cubic-bezier(.4, 0, .2, 1);
+        user-select: none;
+    }
+
+    a:hover{
+        color: rgb(255, 69, 0);
+        cursor: pointer;
+    }
+
+    a.active {
+        color: white;
+        background-color: rgb(255, 69, 0);
+    }
+
+    .lang{
+        text-transform: uppercase;
+    }
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 30px;
+    color: rgb(255, 69, 0);
+}
