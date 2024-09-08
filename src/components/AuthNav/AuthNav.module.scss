@@ -1,12 +1,10 @@
 .nav {
     display: flex;
-
     font-weight: 800;
     font-size: 1.5rem;
 
-    a,
-    .pLanguage {
-        color: white;
+    a {
+        color: var(--header-text-color);
         padding: 8px 16px;
         border-radius: 4px;
         text-decoration: none;
@@ -15,24 +13,17 @@
         user-select: none;
     }
 
-    p {
-        color: white;
-        padding: 8px 16px;
-        border-radius: 4px;
-        text-decoration: none;
-        font-weight: 800;
-        transition: color .75s cubic-bezier(.4, 0, .2, 1);
-        user-select: none;
-    }
-
-    a:hover,
-    p:hover {
-        color: rgb(255, 69, 0);
+    a:hover {
+        color: var(--header-text-active-background);
         cursor: pointer;
     }
 
     a.active {
-        color: white;
-        background-color: rgb(255, 69, 0);
+        color: var(--header-text-color);
+        background-color: var(--header-text-active-background);
+    }
+
+    .lang {
+        text-transform: uppercase;
     }
 }

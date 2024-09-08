@@ -12,15 +12,14 @@
     /* header */
     --header-background: rgb(30, 144, 255);
     --header-text-color: rgb(255, 255, 255);
-    --header-text-hover-color: rgb(0, 0, 255);
+    --header-text-hover-color: rgb(0, 0, 255); 
     --header-text-active-background: rgb(0, 0, 255);
     /* main */
     --main-background: rgb(135, 206, 250);
 
 }
 body {
-    margin: 0 40px;
-
+    margin: 0 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif;

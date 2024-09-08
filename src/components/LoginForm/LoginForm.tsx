@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logIn } from "../redux/authUser/operationsUser.auth";
 import scss from "./LoginForm.module.scss";
@@ -8,7 +8,7 @@ export const LoginForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-  
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -16,14 +16,14 @@ export const LoginForm: React.FC = () => {
       email: HTMLInputElement;
       password: HTMLInputElement;
     };
-     dispatch(
-        logIn({
-          // email: emailRef.current.value,
-          // password: passwordRef.current.value,
-           email: formElements.email.value,
-        password:formElements.password.value,
-        }),
-      );
+    dispatch(
+      logIn({
+        // email: emailRef.current.value,
+        // password: passwordRef.current.value,
+        email: formElements.email.value,
+        password: formElements.password.value,
+      }),
+    );
     form.reset();
   };
 
@@ -48,3 +48,29 @@ export const LoginForm: React.FC = () => {
     </form>
   );
 };
+
+{
+  /* <div className={scss["content"]}>
+  <div className={scss["text"]}>Login Form</div>
+  <form onSubmit={handleSubmit} autoComplete="off">
+    <div className={scss["field"]}>
+      <input type="text" required />
+      <span className={`${(scss["fas"], "fa-user")}`}></span>
+      <label>Username</label>
+    </div>
+    <div className={scss["field"]}>
+      <input type="password" required />
+      <span className="fas fa-lock"></span>
+      <label>Password</label>
+    </div>
+    <div className={scss["forgot-pass"]}>
+      <a href="#">Forgot Password?</a>
+    </div>
+    <button>Sign in</button>
+    <div className={scss["sign-up"]}>
+      Not a member?
+      <a href="#">signup now</a>
+    </div>
+  </form>
+</div>; */
+}
