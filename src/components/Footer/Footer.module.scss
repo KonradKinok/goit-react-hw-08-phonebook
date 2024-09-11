@@ -1,11 +1,11 @@
 .footer {
-    width: var(--max-width-page);
+    // width: var(--max-width-page);
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    background-color: rgba(0, 140, 61, 1);
+    background-color: var(--footer-background);
     padding: 15px 10px;
     color: white;
     text-shadow: 2px 2px 8px white;
@@ -23,7 +23,7 @@
 
 .footer-date {
     align-self: flex-end;
-    color: darkgreen;
+    color: var(--footer-text-color);
     text-shadow: none;
 }
 

@@ -55,6 +55,7 @@ export interface AuthState {
   token: string | null;
   isLoggedIn: boolean;
   isRefreshing: boolean;
+  error: string | null;
 }
 
 //authUser/operationsUser.auth.ts

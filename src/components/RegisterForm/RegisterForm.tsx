@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { register } from "../redux/authUser/operationsUser.auth";
-import scss from "./RegisterForm.module.scss";
-import { AppDispatch } from "../redux/store";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-
+import { AppDispatch } from "../redux/store";
+import { useAuthUser } from "../hooksUser";
+import { register } from "../redux/authUser/operationsUser.auth";
+import { selectLanguage } from "../redux/language/selectorsLanguage";
+import { langDictionary } from "../redux/language/constans";
+import scss from "./RegisterForm.module.scss";
 export const RegisterForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
+  const currentLanguage = useSelector(selectLanguage);
 
-  // Stan dla pól formularza i wiadomości błędów
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,7 +24,12 @@ export const RegisterForm: React.FC = () => {
     confirmPassword: "",
   });
   const [showPassword, setShowPassword] = useState(false);
-
+  // useEffect(() => {
+  //   toast(`ZadanieZFilmu: Witaj `, {
+  //     position: "top-center",
+  //     duration: 2500,
+  //   });
+  // }, [forms.login]);
   // Obsługa zmian w polach formularza
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -39,9 +46,9 @@ export const RegisterForm: React.FC = () => {
 
       let emailError = "";
       if (!localPart || localPart.length < 3) {
-        emailError = "E-mail musi mieć co najmniej 3 znaki przed znakiem @.";
+        emailError = langDictionary.emailWarning[currentLanguage];
       } else if (!domainPart) {
-        emailError = "E-mail musi zawierać znak @.";
+        emailError = langDictionary.emailWarning2[currentLanguage];
       } else {
         emailError = "";
       }
@@ -57,7 +64,7 @@ export const RegisterForm: React.FC = () => {
       if (value.length < 7) {
         setErrors((prevErrors) => ({
           ...prevErrors,
-          password: "Hasło musi zawierać co najmniej 7 znaków.",
+          password: langDictionary.passwordWarning[currentLanguage],
         }));
       } else {
         setErrors((prevErrors) => ({
@@ -67,12 +74,12 @@ export const RegisterForm: React.FC = () => {
       }
     }
 
-    // Sprawdzanie, czy hasła się zgadzają podczas wpisywania w polu "potwierdź hasło"
     if (name === "confirmPassword") {
       if (value !== formData.password) {
         setErrors((prevErrors) => ({
           ...prevErrors,
-          confirmPassword: "Hasła nie pasują.",
+          confirmPassword:
+            langDictionary.confirmPasswordWarning[currentLanguage],
         }));
       } else {
         setErrors((prevErrors) => ({
@@ -86,7 +93,6 @@ export const RegisterForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Jeśli nie ma błędów, przejdź do rejestracji
     if (!errors.confirmPassword && !errors.email && !errors.password) {
       dispatch(
         register({
@@ -101,7 +107,7 @@ export const RegisterForm: React.FC = () => {
         email: "",
         password: "",
         confirmPassword: "",
-      }); // Reset danych formularza
+      });
     }
   };
   const isFormValid = () => {
@@ -117,7 +123,9 @@ export const RegisterForm: React.FC = () => {
   };
   return (
     <div className={scss["content"]}>
-      <div className={scss["text"]}>Register Form</div>
+      <div className={scss["text"]}>
+        {langDictionary.registerFormTitle[currentLanguage]}
+      </div>
       <form onSubmit={handleSubmit}>
         <div className={scss["field"]}>
           <input
@@ -125,7 +133,7 @@ export const RegisterForm: React.FC = () => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            placeholder="Username"
+            placeholder={langDictionary.userField[currentLanguage]}
             autoComplete="username"
             required
           />
@@ -139,7 +147,7 @@ export const RegisterForm: React.FC = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder="E-mail"
+            placeholder={langDictionary.emailField[currentLanguage]}
             autoComplete="email"
             required
           />
@@ -158,7 +166,7 @@ export const RegisterForm: React.FC = () => {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            placeholder="Password"
+            placeholder={langDictionary.passwordField[currentLanguage]}
             autoComplete="new-password"
             required
           />
@@ -181,7 +189,7 @@ export const RegisterForm: React.FC = () => {
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
-            placeholder="Confirm password"
+            placeholder={langDictionary.confirmPasswordField[currentLanguage]}
             autoComplete="new-password"
             required
           />
@@ -204,20 +212,22 @@ export const RegisterForm: React.FC = () => {
             id="checkboxPolicy"
             required
           />
-          <label className={scss["sign-up"]} htmlFor="checkboxPolicy">
-            I accept the terms and conditions of the Privacy Policy
+          <label className={scss["privacy-policy"]} htmlFor="checkboxPolicy">
+            {langDictionary.privacyPolicy[currentLanguage]}
           </label>
         </div>
         <div className={scss["forgot-pass"]}>
           <a href="#">Forgot Password?</a>
         </div>
+
         <button type="submit" disabled={!isFormValid()}>
-          Sign in
+          {langDictionary.signUpButton[currentLanguage]}
         </button>
+
         <div className={scss["sign-up"]}>
-          <p>Already have an account?</p>
+          <p>{langDictionary.alreadyHaveAnAccountText[currentLanguage]}</p>
           <p>
-            <a href="#"> Login now</a>
+            <a href="login"> {langDictionary.loginNowText[currentLanguage]}</a>
           </p>
         </div>
       </form>
