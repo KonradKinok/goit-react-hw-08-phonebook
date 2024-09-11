@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaUser, FaRegEnvelope } from "react-icons/fa";
+import toast from "react-hot-toast";
 import { AppDispatch } from "../redux/store";
-import { useAuthUser } from "../hooksUser";
 import { register } from "../redux/authUser/operationsUser.auth";
 import { selectLanguage } from "../redux/language/selectorsLanguage";
 import { langDictionary } from "../redux/language/constans";
+import {
+  selectErrorConnection,
+  selectIsLoggedIn,
+} from "../redux/authUser/selectorsUser.auth";
 import scss from "./RegisterForm.module.scss";
+
 export const RegisterForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const currentLanguage = useSelector(selectLanguage);
+  const errorConnection = useSelector(selectErrorConnection);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -24,26 +31,44 @@ export const RegisterForm: React.FC = () => {
     confirmPassword: "",
   });
   const [showPassword, setShowPassword] = useState(false);
-  // useEffect(() => {
-  //   toast(`ZadanieZFilmu: Witaj `, {
-  //     position: "top-center",
-  //     duration: 2500,
-  //   });
-  // }, [forms.login]);
-  // Obsługa zmian w polach formularza
+
+  useEffect(() => {
+    if (isLoggedIn && errorConnection === null) {
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+    }
+    if (errorConnection) {
+      const number = errorConnection
+        ? parseInt(errorConnection.match(/\d+/)?.[0] || "", 10)
+        : null;
+      if (number === 400) {
+        toast(`Error: ${langDictionary.errorConnection400[currentLanguage]} `, {
+          position: "top-center",
+          duration: 4000,
+        });
+      } else {
+        toast(`${errorConnection}`, {
+          position: "top-center",
+          duration: 4000,
+        });
+      }
+    }
+  }, [errorConnection]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
 
-    // Aktualizacja stanu danych formularza
     setFormData((prevData) => ({
       ...prevData,
-      [name]: type === "checkbox" ? checked : value, // Obsługa checkboxa
+      [name]: type === "checkbox" ? checked : value,
     }));
 
-    // Sprawdzanie walidacji dla e-mail
     if (name === "email") {
       const [localPart, domainPart] = value.split("@");
-
       let emailError = "";
       if (!localPart || localPart.length < 3) {
         emailError = langDictionary.emailWarning[currentLanguage];
@@ -59,7 +84,6 @@ export const RegisterForm: React.FC = () => {
       }));
     }
 
-    // Sprawdzanie walidacji dla hasła
     if (name === "password") {
       if (value.length < 7) {
         setErrors((prevErrors) => ({
@@ -101,15 +125,9 @@ export const RegisterForm: React.FC = () => {
           password: formData.password,
         }),
       );
-      e.currentTarget.reset();
-      setFormData({
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
     }
   };
+
   const isFormValid = () => {
     return (
       formData.name &&
@@ -121,6 +139,7 @@ export const RegisterForm: React.FC = () => {
       !errors.confirmPassword
     );
   };
+
   return (
     <div className={scss["content"]}>
       <div className={scss["text"]}>
@@ -137,8 +156,9 @@ export const RegisterForm: React.FC = () => {
             autoComplete="username"
             required
           />
-          <span className={`${(scss["fas"], "fa-user")}`}></span>
-          {/* <label>Username</label> */}
+          <span className={`${scss["icons-input"]} `}>
+            <FaUser />
+          </span>
         </div>
 
         <div className={scss["field"]}>
@@ -151,8 +171,9 @@ export const RegisterForm: React.FC = () => {
             autoComplete="email"
             required
           />
-          <span className={`${(scss["fas"], "fa-user")}`}></span>
-          {/* <label>E-mail</label> */}
+          <span className={`${scss["icons-input"]} `}>
+            <FaRegEnvelope />
+          </span>
           {errors.email && (
             <div className={`${scss["tooltip"]} ${scss["error"]}`}>
               {errors.email}
@@ -171,11 +192,10 @@ export const RegisterForm: React.FC = () => {
             required
           />
           <span
-            className={scss["eye-input-password"]}
+            className={`${scss["icons-input"]} ${scss["eye-input-password"]}`}
             onClick={() => setShowPassword((prev) => !prev)}>
             {showPassword ? <FaEye /> : <FaEyeSlash />}
           </span>
-          {/* <label>Password</label> */}
           {errors.password && (
             <div className={`${scss["tooltip"]} ${scss["error"]}`}>
               {errors.password}
@@ -194,17 +214,17 @@ export const RegisterForm: React.FC = () => {
             required
           />
           <span
-            className={scss["eye-input-password"]}
+            className={`${scss["icons-input"]} ${scss["eye-input-password"]}`}
             onClick={() => setShowPassword((prev) => !prev)}>
             {showPassword ? <FaEye /> : <FaEyeSlash />}
           </span>
-          {/* <label>Confirm password</label> */}
           {errors.confirmPassword && (
             <div className={`${scss["tooltip"]} ${scss["error"]}`}>
               {errors.confirmPassword}
             </div>
           )}
         </div>
+
         <div className={scss["field-chackbox"]}>
           <input
             type="checkbox"
@@ -215,9 +235,6 @@ export const RegisterForm: React.FC = () => {
           <label className={scss["privacy-policy"]} htmlFor="checkboxPolicy">
             {langDictionary.privacyPolicy[currentLanguage]}
           </label>
-        </div>
-        <div className={scss["forgot-pass"]}>
-          <a href="#">Forgot Password?</a>
         </div>
 
         <button type="submit" disabled={!isFormValid()}>

@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, isRejectedWithValue } from "@reduxjs/toolkit";
 import { register, logIn, logOut, refreshUser } from "./operationsUser.auth";
-import { User, AuthState, AuthResponse } from "../../Interface/Interface";
+import { User, AuthState, AuthResponse,RejectedAction } from "../../Interface/Interface";
 
 const initialState: AuthState = {
   user: { name: null, email: null },
@@ -16,10 +16,16 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(register.pending, (state) => {
+        state.error = null;
+      })
       .addCase(register.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+      })
+     .addCase(logIn.pending, (state) => {
+        state.error = null;
       })
       .addCase(logIn.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
         state.user = action.payload.user;
@@ -41,6 +47,16 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, (state) => {
         state.isRefreshing = false;
+      })
+     .addMatcher(
+        isRejectedWithValue(register),
+        (state, action) => {
+          state.error = action.payload as string; // Obsłużenie odrzuconego błędu
+          console.log("sliceUser: isRejectedWithValue state.error", state.error);
+        })
+    .addMatcher(isRejectedWithValue(logIn), (state, action) => {
+        state.error = action.payload as string; // Obsłużenie odrzuconego błędu dla logIn
+        console.log("sliceUser: isRejectedWithValue state.error (logIn)", state.error);
       });
   },
 });
@@ -71,9 +87,9 @@ export const authReducer = authSlice.reducer;
 //         state.token = action.payload.token;
 //         state.isLoggedIn = true;
 //       })
-//       .addCase(register.rejected, (state, action) => {
-//         state.error = action.payload; // Ustawienie błędu w stanie
-//       })
+      // .addCase(register.rejected, (state, action) => {
+      //   state.error = action.payload; // Ustawienie błędu w stanie
+      // })
 //       .addCase(logIn.pending, (state) => {
 //         state.error = null;
 //       })

@@ -20,7 +20,8 @@
     --form-color:rgb(0, 100, 255);
     --form-field-background: rgb(255, 255, 255);
     --form-button-color: rgb(255, 255, 255);
-    --form-button-background: rgb(0, 100, 255);
+    --form-button-background-first: rgb(0, 0, 255);
+    --form-button-background-second: rgb(0, 100, 255);
     /* footer */
     --footer-background: rgb(30, 144, 255);
     --footer-text-color:rgb(0, 0, 255);

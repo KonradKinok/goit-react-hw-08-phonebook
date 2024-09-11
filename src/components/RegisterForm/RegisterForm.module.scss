@@ -3,7 +3,6 @@
 .content {
     max-width: 800px;
     padding: 40px 30px;
-    background-color: var(--main-background);
     margin: 0 auto;
     position: relative;
     z-index: 1;
@@ -86,7 +85,7 @@
         outline: none;
         cursor: pointer;
         transition: transform 0.3s ease-in-out;
-        background-image : linear-gradient(to right, var(--header-text-hover-color), var(--form-color));
+        background-image : linear-gradient(to right, var(--form-button-background-first), var(--form-button-background-second));
         position: relative;
     }
 
@@ -102,13 +101,14 @@
 
     button:not(:disabled):focus,
     button:not(:disabled):hover{
-        background-image: linear-gradient(to left, var(--header-text-hover-color), var(--form-color));
+        background-image: linear-gradient(to left, var(--form-button-background-first), var(--form-button-background-second));
         transform: scale(1.01);
     }
 
     button:not(:disabled):active{
         transform: scale(0.98);
     }
+
     button:disabled{
         opacity: 0.5;
         cursor:not-allowed;
@@ -120,11 +120,13 @@
         gap: 10px;
         
     }
+
     .field-chackbox input {
         cursor: pointer;
         width: 24px;
 
     }
+
     .privacy-policy{
         margin: 10px 0;
         color: var(--form-color);
@@ -137,32 +139,30 @@
         color: var(--form-color);
         font-size: 16px;
         padding-left: 15px;
-        
     }
 
     .sign-up a {
         color: #3498db;
         text-decoration: none;
-        
     }
 
     .sign-up a:hover {
         text-decoration: underline;
     }
 
-    .eye-input-password{
+    .icons-input{
         position: absolute;
         right: 0;
         top: 50%;
         transform: translateY(-50%);
+    }
+    .eye-input-password{
         cursor: pointer;
     }
-
+    
     .tooltip {
         position: absolute;
-        /* Dymek będzie absolutnie pozycjonowany względem kontenera */
         top: -30px;
-        /* Dostosuj według potrzeb */
         left: 50%;
         transform: translateX(-50%);
         background: #1E2126;
@@ -173,7 +173,6 @@
         white-space: nowrap;
         z-index: 100;
         opacity: 0;
-        /* Domyślnie ukryty */
         transition: opacity 0.3s ease-in-out;
     }
 

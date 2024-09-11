@@ -1,9 +1,189 @@
-.form {
-    width: 320px;
-}
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
-.label {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 16px;
+.content {
+    max-width: 800px;
+    padding: 40px 30px;
+    background-color: var(--main-background);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+
+    .text {
+        font-size: 33px;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 35px;
+        color: var(--form-color);
+    }
+
+    .field {
+        height: 50px;
+        width: 100%;
+        display: flex;
+        position: relative;
+    }
+
+    .field:not(:first-child) {
+        margin-top: 20px;
+    }
+
+    .field input {
+        height: 100%;
+        width: 100%;
+        padding-left: 45px;
+        padding-right: 55px;
+        outline: none;
+        border: none;
+        font-size: 18px;
+        color: var(--form-color);
+
+        border-radius: 25px;
+        box-shadow: inset 2px 2px 5px #BABECC,
+            inset -5px -5px 10px #ffffff73;
+    }
+
+    .field input::placeholder {
+        color: var(--form-color);
+    }
+
+    .field input:focus {
+        box-shadow: inset 1px 1px 2px #BABECC,
+            inset -1px -1px 2px #ffffff73;
+    }
+
+    .field span {
+        position: absolute;
+        color: var(--form-color);
+        width: 50px;
+        line-height: 50px;
+    }
+
+    .forgot-pass {
+        text-align: left;
+        margin: 10px 0 10px 5px;
+    }
+
+    .forgot-pass a {
+        font-size: 16px;
+        color: #3498db;
+        text-decoration: none;
+    }
+
+    .forgot-pass:hover a {
+        text-decoration: underline;
+    }
+
+    button {
+        margin: 15px 0;
+        width: 100%;
+        height: 50px;
+        font-size: 18px;
+        line-height: 50px;
+        font-weight: 600;
+        color: var(--form-button-color);
+        border-radius: 25px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+        background-image: linear-gradient(to right, var(--form-button-background-first), var(--form-button-background-second));
+        position: relative;
+    }
+
+    button::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: inherit;
+        z-index: -1;
+        transform: translateY(20%) scale(.96);
+        filter: blur(24px);
+    }
+
+    button:not(:disabled):focus,
+    button:not(:disabled):hover {
+        background-image: linear-gradient(to left, var(--form-button-background-first), var(--form-button-background-second));
+        transform: scale(1.01);
+    }
+
+    button:not(:disabled):active {
+        transform: scale(0.98);
+    }
+
+    button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .field-chackbox {
+        padding: 15px 0 0 15px;
+        display: flex;
+        gap: 10px;
+
+    }
+
+    .field-chackbox input {
+        cursor: pointer;
+        width: 24px;
+
+    }
+
+    .privacy-policy {
+        margin: 10px 0;
+        color: var(--form-color);
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .sign-up {
+        margin: 10px 0;
+        color: var(--form-color);
+        font-size: 16px;
+        padding-left: 15px;
+    }
+
+    .sign-up a {
+        color: #3498db;
+        text-decoration: none;
+    }
+
+    .sign-up a:hover {
+        text-decoration: underline;
+    }
+
+    .icons-input {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .eye-input-password {
+        cursor: pointer;
+    }
+
+    .tooltip {
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #1E2126;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        z-index: 100;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .error {
+        opacity: 1;
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:focus {
+        transition: background-color 0s 600000s, color 0s 600000s !important;
+    }
 }

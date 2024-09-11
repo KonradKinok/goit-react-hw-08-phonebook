@@ -64,6 +64,10 @@ export interface AuthResponse {
   token: string;
 }
 
+//authUser/sliceUser.auth.ts
+export interface RejectedAction {
+  payload: string | null;
+}
 //contacts/selectors.ts
 //authUser/selectorsUser.auth.ts
 //language/selectorsLanguage.ts

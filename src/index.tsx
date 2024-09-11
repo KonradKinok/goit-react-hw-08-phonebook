@@ -11,15 +11,15 @@ const rootElement = document.getElementById("root");
 
 if (rootElement) {
   ReactDOM.createRoot(rootElement).render(
-    <React.StrictMode>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <BrowserRouter basename="/goit-react-hw-08-phonebook/">
-            <App />
-          </BrowserRouter>
-        </PersistGate>
-      </Provider>
-    </React.StrictMode>,
+    // <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter basename="/goit-react-hw-08-phonebook/">
+          <App />
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>,
+    // </React.StrictMode>,
   );
 } else {
   console.error("Root element not found");

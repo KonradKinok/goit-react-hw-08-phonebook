@@ -33,6 +33,7 @@ export const langDictionary = {
         [Languages.EN]: "Log In",
         [Languages.PL]: "Zaloguj się",
     },
+    
     // RegisterForm
     registerFormTitle: {
         [Languages.EN]: "Register form",
@@ -86,9 +87,34 @@ export const langDictionary = {
         [Languages.EN]: "Login now",
         [Languages.PL]: "Zaloguj się teraz",
     },
+    // RegisterForm errors
+    errorConnection400: {
+        [Languages.EN]: "Request failed with status code 400. It is possible that the email address has already been used.",
+        [Languages.PL]: "Żądanie nie powiodło się, kod statusu 400. Prawdopodobnie adres e-mail został już użyty.",
+    },
 
-
-
+    // LoginForm
+    loginFormTitle: {
+        [Languages.EN]: "Login form",
+        [Languages.PL]: "Formularz logowania",
+    },
+    signInButton: {
+        [Languages.EN]: "Sign in",
+        [Languages.PL]: "Zaloguj się",
+    },
+    dontHaveAnAccountText: {
+        [Languages.EN]: "Don't have an account yet?",
+        [Languages.PL]: "Nie masz jeszcze konta?",
+    },
+    registerNowText: {
+        [Languages.EN]: "Register now",
+        [Languages.PL]: "Zarejestruj się teraz",
+    },
+    // LoginForm errors
+    loginFormErrorConnection400: {
+        [Languages.EN]: "Request failed with status code 400. Email address or password is invalid.",
+        [Languages.PL]: "Żądanie nie powiodło się, kod statusu 400. Adres e-mail lub hasło są nieprawidłowe.",
+    },
     tableId: {
         [Languages.EN]: "Id",
         [Languages.PL]: "Lp",
@@ -96,5 +122,13 @@ export const langDictionary = {
     tableName: {
         [Languages.EN]: "Name",
         [Languages.PL]: "Nazwa"
-    }
+    },
+    tableNumber: {
+        [Languages.EN]: "Number",
+        [Languages.PL]: "Numer"
+    },
+    tableAction: {
+        [Languages.EN]: "Actions",
+        [Languages.PL]: "Akcje"
+    },
 }

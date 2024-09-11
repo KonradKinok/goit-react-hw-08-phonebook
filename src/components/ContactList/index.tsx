@@ -33,8 +33,8 @@ const ContactList: React.FC = () => {
             <tr>
               <th>{langDictionary.tableId[currentLanguage]}</th>
               <th>{langDictionary.tableName[currentLanguage]}</th>
-              <th>Number</th>
-              <th colSpan={2}>Action</th>
+              <th>{langDictionary.tableNumber[currentLanguage]}</th>
+              <th colSpan={2}>{langDictionary.tableAction[currentLanguage]}</th>
             </tr>
           </thead>
           <tbody>
