@@ -121,6 +121,11 @@ export const langDictionary = {
         [Languages.EN]: "Search contact",
         [Languages.PL]: "Wyszukaj kontakt"
     },
+    // addContact
+    tableButtonAddContact: {
+        [Languages.EN]: "Add",
+        [Languages.PL]: "Dodaj"
+    },
     //Table
     tableId: {
         [Languages.EN]: "Id",

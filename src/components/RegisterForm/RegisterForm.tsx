@@ -46,12 +46,12 @@ export const RegisterForm: React.FC = () => {
         ? parseInt(errorConnection.match(/\d+/)?.[0] || "", 10)
         : null;
       if (number === 400) {
-        toast(`Error: ${langDictionary.errorConnection400[currentLanguage]} `, {
+        toast.error(`${langDictionary.errorConnection400[currentLanguage]} `, {
           position: "top-center",
           duration: 4000,
         });
       } else {
-        toast(`${errorConnection}`, {
+        toast.error(`${errorConnection}`, {
           position: "top-center",
           duration: 4000,
         });
