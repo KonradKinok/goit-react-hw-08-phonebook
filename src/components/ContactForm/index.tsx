@@ -23,7 +23,7 @@ const ContactForm: React.FC = () => {
   const handleCancel = () => {
     setContactToAdd({ name: "", number: "" });
   };
-  const isValidPhoneNumber = (phoneNumber) => {
+  const isValidPhoneNumber = (phoneNumber: string) => {
     const regex = /^(\+?[0-9]+(-[0-9]+)*)?$/;
     return regex.test(phoneNumber);
   };
@@ -74,7 +74,6 @@ const ContactForm: React.FC = () => {
           id={nameId}
           type="text"
           name="name"
-          title="The name can only contain letters, including Polish letters, apostrophes, hyphens, and spaces."
           value={contactToAdd.name}
           onChange={(e) =>
             handleInputChange(
@@ -91,7 +90,7 @@ const ContactForm: React.FC = () => {
           type="tel"
           name="number"
           pattern="^\+?[0-9]+(-[0-9]+)*$"
-          title="Only numbers and an optional leading +"
+          title="Only numbers"
           value={contactToAdd.number}
           onChange={(e) =>
             handleInputChange(
