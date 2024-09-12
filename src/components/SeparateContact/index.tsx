@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteContact } from "../redux/contacts/operations";
 import { AppDispatch } from "../redux/store";
-import { setLanguage } from "../redux/language/sliceLanguage";
 import { selectLanguage } from "../redux/language/selectorsLanguage";
+import { langDictionary } from "../redux/language/constans";
 import scss from "./SeparateContact.module.scss";
 
 interface Contact {
@@ -26,11 +26,6 @@ const SeparateContact: React.FC<SeparateContactProps> = ({
   const dispatch = useDispatch<AppDispatch>();
   const handleDelete = () => dispatch(deleteContact(contact.id));
   const currentLanguage = useSelector(selectLanguage);
-  console.log("currentLanguage: ", currentLanguage);
-
-  const handleChangeLanguage = (lang: "en" | "pl") => {
-    dispatch(setLanguage(lang));
-  };
 
   const [editId, setEditId] = useState<string | null>(null); // śledzenie ID kontaktu w trybie edycji
   const [editedContact, setEditedContact] = useState<Contact>(contact); // lokalny stan dla edytowanego kontaktu
@@ -79,16 +74,22 @@ const SeparateContact: React.FC<SeparateContactProps> = ({
       <td>
         {editId === contact.id ? (
           <>
-            <button onClick={handleEditClick}>Save</button>
-            <button onClick={handleCancelClick}>Cancel</button>
+            <button onClick={handleEditClick}>
+              {langDictionary.tableButtonSave[currentLanguage]}
+            </button>
+            <button onClick={handleCancelClick}>
+              {langDictionary.tableButtonCancel[currentLanguage]}
+            </button>
           </>
         ) : (
-          <button onClick={handleEditClick}>Edit</button>
+          <button onClick={handleEditClick}>
+            {langDictionary.tableButtonEdit[currentLanguage]}
+          </button>
         )}
       </td>
       <td>
         <button type="button" onClick={handleDelete}>
-          Delete
+          {langDictionary.tableButtonDelete[currentLanguage]}
         </button>
       </td>
     </tr>

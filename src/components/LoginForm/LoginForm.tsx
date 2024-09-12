@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logIn } from "../redux/authUser/operationsUser.auth";
-import scss from "./LoginForm.module.scss";
+import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash, FaRegEnvelope } from "react-icons/fa";
 import { AppDispatch } from "../redux/store";
-import { FaEye, FaEyeSlash, FaUser, FaRegEnvelope } from "react-icons/fa";
-import { selectLanguage } from "../redux/language/selectorsLanguage";
-import { langDictionary } from "../redux/language/constans";
+import { logIn } from "../redux/authUser/operationsUser.auth";
 import {
   selectErrorConnection,
   selectIsLoggedIn,
 } from "../redux/authUser/selectorsUser.auth";
-import toast from "react-hot-toast";
+import { langDictionary } from "../redux/language/constans";
+import { selectLanguage } from "../redux/language/selectorsLanguage";
+import scss from "./LoginForm.module.scss";
+
 export const LoginForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const currentLanguage = useSelector(selectLanguage);
@@ -180,18 +181,5 @@ export const LoginForm: React.FC = () => {
     </div>
   );
   // franekdolas@gmail.com
-
   //   franekdolas2024
-  //     <label className={scss.label}>
-  //       Email
-  //       <input type="email" name="email" ref={emailRef} />
-  //     </label>
-  //     <label className={scss.label}>
-  //       Password
-  //       <input type="password" name="password" ref={passwordRef} />
-  //     </label>
-  //     <button type="submit">Log In</button>
-
-  //   </form>
-  // );
 };

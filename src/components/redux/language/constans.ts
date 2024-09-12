@@ -115,6 +115,13 @@ export const langDictionary = {
         [Languages.EN]: "Request failed with status code 400. Email address or password is invalid.",
         [Languages.PL]: "Żądanie nie powiodło się, kod statusu 400. Adres e-mail lub hasło są nieprawidłowe.",
     },
+
+    // Filter Contacts
+    findContact: {
+        [Languages.EN]: "Search contact",
+        [Languages.PL]: "Wyszukaj kontakt"
+    },
+    //Table
     tableId: {
         [Languages.EN]: "Id",
         [Languages.PL]: "Lp",
@@ -130,5 +137,21 @@ export const langDictionary = {
     tableAction: {
         [Languages.EN]: "Actions",
         [Languages.PL]: "Akcje"
+    },
+    tableButtonSave: {
+        [Languages.EN]: "Save",
+        [Languages.PL]: "Zapisz"
+    },
+    tableButtonCancel: {
+        [Languages.EN]: "Cancel",
+        [Languages.PL]: "Anuluj"
+    },
+    tableButtonEdit: {
+        [Languages.EN]: "Edit",
+        [Languages.PL]: "Edytuj"
+    },
+    tableButtonDelete: {
+        [Languages.EN]: "Delete",
+        [Languages.PL]: "Usuń"
     },
 }
