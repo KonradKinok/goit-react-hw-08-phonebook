@@ -6,3 +6,20 @@
 
    
 }
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 30px;
+    color: var(--header-text-active-background);
+}
+
+.container-appbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

@@ -9,7 +9,10 @@ import { setLanguage } from "../redux/language/sliceLanguage";
 import { selectLanguage } from "../redux/language/selectorsLanguage";
 import { Languages, langDictionary } from "../redux/language/constans";
 import { GiWhiteBook } from "react-icons/gi";
-export const Navigation: React.FC = () => {
+interface NavigationProps {
+  onLinkClick?: () => void; // Opcjonalny prop
+}
+export const Navigation: React.FC<NavigationProps> = ({ onLinkClick }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { isLoggedIn }: AuthUser = useAuthUser();
   const currentLanguage = useSelector(selectLanguage);
@@ -18,25 +21,24 @@ export const Navigation: React.FC = () => {
     const newLanguage =
       currentLanguage === Languages.EN ? Languages.PL : Languages.EN;
     dispatch(setLanguage(newLanguage));
+    if (onLinkClick) onLinkClick();
   };
   return (
     <nav className={scss.nav}>
-      <div className={scss.title}>
-        <GiWhiteBook size={50} />
-        <p>{langDictionary.navPhonebook[currentLanguage]}</p>
-      </div>
       <a className={scss.lang} onClick={handleChangeLanguage}>
         {currentLanguage}
       </a>
       <NavLink
         to="/"
-        className={({ isActive }) => (isActive ? scss.active : "")}>
+        className={({ isActive }) => (isActive ? scss.active : "")}
+        onClick={onLinkClick}>
         {langDictionary.navHome[currentLanguage]}
       </NavLink>
       {isLoggedIn && (
         <NavLink
           to="/contacts"
-          className={({ isActive }) => (isActive ? scss.active : "")}>
+          className={({ isActive }) => (isActive ? scss.active : "")}
+          onClick={onLinkClick}>
           {langDictionary.navContacts[currentLanguage]}
         </NavLink>
       )}

@@ -25,7 +25,13 @@
     /* footer */
     --footer-background: rgb(30, 144, 255);
     --footer-text-color:rgb(0, 0, 255);
-
+    /* mobile-menu */
+    --mobile-menu-open-icon-color: rgb(0, 0, 255);
+    --mobile-menu-open-icon-color-hover:rgb(0, 0, 205);
+    --mobile-menu-background: rgb(135, 206, 250);
+    --mobile-menu-color:rgb(0, 0, 139);
+    --mobile-menu-close-icon-color: rgb(0, 0, 255);
+    --mobile-menu-close-icon-color-hover: rgba(0, 0, 205,0.5);
 }
 body {
     margin: 0 0;

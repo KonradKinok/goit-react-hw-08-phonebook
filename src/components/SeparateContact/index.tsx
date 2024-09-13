@@ -91,7 +91,7 @@ const SeparateContact: React.FC<SeparateContactProps> = ({
               required
             />
           ) : (
-            <span>{editedContact.name}</span>
+            <span className={scss["span-item"]}>{editedContact.name}</span>
           )}
         </span>
         <span>

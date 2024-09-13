@@ -40,7 +40,13 @@ max-width: calc(100vw - 10px);
                 font-size: 14px;
             color: var(--form-color);
                 
-                    
+                    span, a{
+                        color:inherit;
+                    }
+
+                    a{
+                        padding: 0 10px;
+                    }
                 input{
                     font-size: inherit;
                     text-transform: capitalize;
