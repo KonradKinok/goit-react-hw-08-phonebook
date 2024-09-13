@@ -28,15 +28,15 @@ const SeparateContact: React.FC<SeparateContactProps> = ({
   const handleDelete = () => dispatch(deleteContact(contact.id));
   const currentLanguage = useSelector(selectLanguage);
 
-  const [editId, setEditId] = useState<string | null>(null); // śledzenie ID kontaktu w trybie edycji
-  const [editedContact, setEditedContact] = useState<Contact>(contact); // lokalny stan dla edytowanego kontaktu
+  const [editId, setEditId] = useState<string | null>(null);
+  const [editedContact, setEditedContact] = useState<Contact>(contact);
   const [originalContact, setOriginalContact] = useState<Contact>(contact);
 
   const isValidPhoneNumber = (phoneNumber: string) => {
     const regex = /^(\+?[0-9]+(-[0-9]+)*)?$/;
     return regex.test(phoneNumber);
   };
-  // Handler do przechwytywania zmian w inputach
+
   const handleInputChange = (field: keyof Contact, value: string) => {
     if (field === "number" && !isValidPhoneNumber(value)) {
       const errorMessage = langDictionary.errorPhoneNumberRegex[
@@ -52,54 +52,65 @@ const SeparateContact: React.FC<SeparateContactProps> = ({
     setEditedContact((prevContact) => ({ ...prevContact, [field]: value }));
   };
 
-  // Handler do zarządzania trybem edycji/zapisu
   const handleEditClick = () => {
     if (editId === contact.id) {
-      // Jeśli kliknięto "Save", wykonaj edycję i wyczyść tryb edycji
-      editContact(editedContact); // Wywołanie funkcji editContact
-      setEditId(null); // Reset trybu edycji
+      editContact(editedContact);
+      setEditId(null);
     } else {
-      // Jeśli kliknięto "Edit", ustaw wiersz w tryb edycji
       setEditId(contact.id);
-      setOriginalContact(contact); // Zachowaj oryginalny kontakt przed edycją
+      setOriginalContact(contact);
     }
   };
 
-  // Handler do anulowania edycji
   const handleCancelClick = () => {
-    setEditedContact(originalContact); // Przywróć oryginalny kontakt
-    setEditId(null); // Reset trybu edycji
+    setEditedContact(originalContact);
+    setEditId(null);
   };
+
   const isButtonSaveEnabled = () => {
     return editedContact.name && editedContact.number;
   };
+
   return (
     <li className={scss["contact-item"]} key={contact.id}>
       <form>
         <span>{String(index + 1).padStart(2, "0")}.</span>
         <span>
-          <input
-            type="text"
-            name="name"
-            value={editedContact.name}
-            disabled={editId !== contact.id} // input nieaktywny, gdy nie jest w trybie edycji
-            onChange={(e) =>
-              handleInputChange(e.target.name as keyof Contact, e.target.value)
-            } // zarządzanie zmianami inputu
-            required
-          />
+          {editId === contact.id ? (
+            <input
+              type="text"
+              name="name"
+              value={editedContact.name}
+              disabled={editId !== contact.id}
+              onChange={(e) =>
+                handleInputChange(
+                  e.target.name as keyof Contact,
+                  e.target.value,
+                )
+              }
+              required
+            />
+          ) : (
+            <span>{editedContact.name}</span>
+          )}
         </span>
         <span>
-          <input
-            type="tel"
-            name="number"
-            value={editedContact.number}
-            disabled={editId !== contact.id} // input nieaktywny, gdy nie jest w trybie edycji
-            onChange={(e) =>
-              handleInputChange(e.target.name as keyof Contact, e.target.value)
-            } // zarządzanie zmianami inputu
-            required
-          />
+          {editId === contact.id ? (
+            <input
+              type="tel"
+              name="number"
+              value={editedContact.number}
+              onChange={(e) =>
+                handleInputChange(
+                  e.target.name as keyof Contact,
+                  e.target.value,
+                )
+              }
+              required
+            />
+          ) : (
+            <a href={`tel:${editedContact.number}`}>{editedContact.number}</a>
+          )}
         </span>
         <span>
           {editId === contact.id ? (
