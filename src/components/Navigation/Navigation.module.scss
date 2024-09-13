@@ -1,7 +1,8 @@
-.nav {
+.nav-navigation {
     display: flex;
     font-weight: 800;
     font-size: 1.5rem;
+    margin-right: 20px;
     
     a{
         color: var(--header-text-color);
@@ -29,7 +30,7 @@
 }
 
 @media screen and (max-width: 700px) {
-    .nav {
+    .nav-navigation {
         flex-flow: column nowrap;
     }
 

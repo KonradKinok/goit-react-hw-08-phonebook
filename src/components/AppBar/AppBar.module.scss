@@ -3,7 +3,7 @@
     justify-content: space-between;
     background-color: var(--header-background);
     padding: 15px;
-
+white-space: nowrap;
    
 }
 
@@ -22,4 +22,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+@media screen and (min-width: 701px) and (max-width: 930px) {
+    .container-appbar {
+        flex-direction: column;
+    }
 }

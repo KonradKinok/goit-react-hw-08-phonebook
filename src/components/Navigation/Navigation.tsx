@@ -24,8 +24,8 @@ export const Navigation: React.FC<NavigationProps> = ({ onLinkClick }) => {
     if (onLinkClick) onLinkClick();
   };
   return (
-    <nav className={scss.nav}>
-      <a className={scss.lang} onClick={handleChangeLanguage}>
+    <nav className={scss["nav-navigation"]}>
+      <a className={scss["lang"]} onClick={handleChangeLanguage}>
         {currentLanguage}
       </a>
       <NavLink

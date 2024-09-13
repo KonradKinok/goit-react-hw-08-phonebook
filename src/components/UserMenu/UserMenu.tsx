@@ -20,9 +20,9 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onLinkClick }) => {
   };
   return (
     <div className={scss["header-container-user-menu"]}>
-      <p className={scss.username}>
+      <small className={scss.username}>
         {langDictionary.navWelcome[currentLanguage]}, {user.name}
-      </p>
+      </small>
       <a onClick={handleLogOut}>{langDictionary.navLogOut[currentLanguage]}</a>
     </div>
   );
