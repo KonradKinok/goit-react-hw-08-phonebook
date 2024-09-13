@@ -25,6 +25,7 @@
     /* footer */
     --footer-background: rgb(30, 144, 255);
     --footer-text-color:rgb(0, 0, 255);
+    --footer-text-color-hover:rgb(25, 25, 112);
     /* mobile-menu */
     --mobile-menu-open-icon-color: rgb(0, 0, 255);
     --mobile-menu-open-icon-color-hover:rgb(0, 0, 205);

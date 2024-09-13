@@ -177,4 +177,9 @@ export const langDictionary = {
         [Languages.EN]: "Delete",
         [Languages.PL]: "Usuń"
     },
+    footerLibraries: {
+        [Languages.EN]: "Libraries",
+        [Languages.PL]: "Biblioteki"
+    },
+
 }
