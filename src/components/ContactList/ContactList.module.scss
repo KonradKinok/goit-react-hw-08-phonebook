@@ -6,70 +6,130 @@
         z-index: 1; // Zapewnia, że nagłówek będzie nad innymi elementami
 }
 
-.second-table {
-    width: 100%;
-    table-layout: auto;
+.contact-list{
+display: grid;
+max-width: calc(100vw - 10px);
+
+    /* Odstępy między elementami listy */
     padding: 0;
-    border-collapse: collapse;
-    
-        overflow-x: auto;
-    th, td{
-        overflow: hidden; // Ukrywa zawartość, która przekracza maksymalną szerokość
-            text-overflow: ellipsis; // Dodaje wielokropek, jeśli tekst jest za długi
-            
-            color: black;
-    }
-    thead{
-
-    }
-    th {
-        padding: 20px 15px;
-        text-align:left;
-        font-weight: 500;
-        font-size: 12px;
-        
-        text-transform: uppercase;
+    margin: 0;
+    li {
        
-    }
-
-    td {
-        padding: 0px;
-        text-align: left;
-        vertical-align: middle;
-        font-weight: 300;
-        font-size: 12px;
-        color: black;
-        
-    }
-
-         th:first-child,
-         td:first-child {
-             white-space: nowrap; // Zapobiega zawijaniu tekstu w pierwszej kolumnie
-             max-width: 10px; // Maksymalna szerokość dla pierwszej kolumny
-            padding: 1px;
-         }
-
-         input{
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            text-transform: capitalize;
+        form{
+            display: grid;
+            /* Używamy siatki dla każdego elementu <li> */
+            max-width: calc(100vw - 10px);
+            grid-template-columns: 5% 40% 35% 10% 10%;
+            // grid-template-columns: max-content max-content max-content max-content max-content;
+            // grid-template-columns: auto auto auto auto auto;
+            /* Kolumny ustawione procentowo */
             
-         }
+            /* Odstępy między kolumnami */
+            
+            list-style: none;
+            /* Usuwamy punktory listy */
+            align-items: center;
+            /* Wyrównanie treści w pionie */
+            border-bottom: 1px solid #070707;
+            /* Dolna linia dla rozdzielenia */
 
-                 
+            span{
+                width: 100%;
+                // border-right: 1px solid #070707;
+                padding: 0 10px;
+                font-size: 14px;
+            color: var(--form-color);
+                
+                    
+                input{
+                    font-size: inherit;
+                    text-transform: capitalize;
+                    width: 100%;
+                    height: 100%;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    outline: none;
+                    border: none;
+                    
+                    color: inherit;
+                
+                    border-radius: 5px;
+                    box-shadow: inset 2px 2px 5px #BABECC,
+                        inset -5px -5px 10px #ffffff73;
+                }
+                input::placeholder {
+                    color: inherit;
+                }
+
+                input:focus {
+                    outline: auto;
+                    box-shadow: inset 1px 1px 2px #BABECC,
+                        inset -1px -1px 2px #ffffff73;
+                        font-size: 18px;
+                }
+
+                                input:-webkit-autofill,
+                                input:-webkit-autofill:focus {
+                                    transition: background-color 0s 600000s, color 0s 600000s !important;
+                                }
+
+                button{
+                    font-size: inherit;
+                    line-height: 20px;
+                    margin: 2px auto;
+                    width: 100%;
+                    height: 100%;
+                    font-weight: 600;
+                    color: var(--form-button-color);
+                    border-radius: 25px;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    transition: transform 0.3s ease-in-out;
+                    background-image: linear-gradient(to right, var(--form-button-background-first), var(--form-button-background-second));
+                    position: relative;
+                    
+                }
+
+                button:not(:disabled):focus,
+                button:not(:disabled):hover {
+                    background-image: linear-gradient(to left, var(--form-button-background-first), var(--form-button-background-second));
+                    transform: scale(1.01);
+                }
+
+                button:not(:disabled):active {
+                    transform: scale(0.98);
+                }
+
+                button:disabled {
+                    opacity: 0.5;
+                    cursor: not-allowed;
+                }
+            }
+        }
+            
+        .span-title{
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+
+        }
+
 }
 
 
 
-.tbl-content {
-    height: 300px;
-    overflow-x: auto;
-    margin-top: 0px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    
-}
 
-.second-table tbody tr:hover {
-    background-color: #2400ff61;
-}
+//  button::before {
+//      content: '';
+//      position: absolute;
+//      inset: 0;
+//      background: inherit;
+//      z-index: -1;
+//      transform: translateY(20%) scale(.96);
+//      filter: blur(24px);
+//  }
+
+ 

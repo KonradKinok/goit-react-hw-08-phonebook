@@ -7,6 +7,7 @@ import { AppDispatch } from "../redux/store";
 import scss from "./ContactList.module.scss";
 import { selectLanguage } from "../redux/language/selectorsLanguage";
 import { langDictionary } from "../redux/language/constans";
+import ContactForm from "../ContactForm";
 interface Contact {
   id: string;
   name: string;
@@ -20,6 +21,7 @@ const ContactList: React.FC = () => {
   );
   const dispatch = useDispatch<AppDispatch>();
   const currentLanguage = useSelector(selectLanguage);
+
   const handleEditContact = (updatedContact: Contact) => {
     dispatch(editContactAction(updatedContact));
     console.log("Contact updated:", updatedContact);
@@ -27,27 +29,34 @@ const ContactList: React.FC = () => {
 
   return (
     <>
-      <div className={scss["tbl-content"]}>
-        <table className={`${scss["second-table"]} `}>
-          <thead className={scss["tbl-header"]}>
-            <tr>
-              <th>{langDictionary.tableId[currentLanguage]}</th>
-              <th>{langDictionary.tableName[currentLanguage]}</th>
-              <th>{langDictionary.tableNumber[currentLanguage]}</th>
-              <th colSpan={2}>{langDictionary.tableAction[currentLanguage]}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sortedContacts.map((contact: Contact, index: number) => (
-              <SeparateContact
-                index={index}
-                key={contact.id}
-                contact={contact}
-                editContact={handleEditContact}
-              />
-            ))}
-          </tbody>
-        </table>
+      <div className={scss["contact-list-content"]}>
+        <ul className={scss["contact-list"]}>
+          <li className={scss["list-header"]}>
+            <form className={scss["list-first-child"]}>
+              <span className={scss["span-title"]}>
+                {langDictionary.tableId[currentLanguage]}
+              </span>
+              <span className={scss["span-title"]}>
+                {langDictionary.tableName[currentLanguage]}
+              </span>
+              <span className={scss["span-title"]}>
+                {langDictionary.tableNumber[currentLanguage]}
+              </span>
+              <span className={scss["span-title"]}>
+                {langDictionary.tableAction[currentLanguage]}
+              </span>
+            </form>
+          </li>
+          <ContactForm />
+          {sortedContacts.map((contact: Contact, index: number) => (
+            <SeparateContact
+              index={index}
+              key={contact.id}
+              contact={contact}
+              editContact={handleEditContact}
+            />
+          ))}
+        </ul>
       </div>
     </>
   );

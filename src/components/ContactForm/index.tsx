@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
 import { addContact } from "../redux/contacts/operations";
@@ -8,21 +8,26 @@ import scss from "./ContactForm.module.scss";
 import { selectLanguage } from "../redux/language/selectorsLanguage";
 import { langDictionary } from "../redux/language/constans";
 import toast from "react-hot-toast";
+
 interface ContactToAdd {
   name: string;
   number: string;
 }
+
 const ContactForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const contacts = useSelector(selectContacts);
   const currentLanguage = useSelector(selectLanguage);
+
   const [contactToAdd, setContactToAdd] = useState<ContactToAdd>({
     name: "",
     number: "",
   });
+
   const handleCancel = () => {
     setContactToAdd({ name: "", number: "" });
   };
+
   const isValidPhoneNumber = (phoneNumber: string) => {
     const regex = /^(\+?[0-9]+(-[0-9]+)*)?$/;
     return regex.test(phoneNumber);
@@ -30,16 +35,21 @@ const ContactForm: React.FC = () => {
 
   const handleInputChange = (field: keyof ContactToAdd, value: string) => {
     if (field === "number" && !isValidPhoneNumber(value)) {
-      toast.error(`${field} or ${value} jest jakiś błąd`, {
+      const errorMessage = langDictionary.errorPhoneNumberRegex[
+        currentLanguage
+      ].replace("{value}", value);
+
+      toast.error(errorMessage, {
         position: "top-center",
         duration: 4000,
       });
-    } else {
-      setContactToAdd((prevContact) => ({ ...prevContact, [field]: value }));
+      return;
     }
+    setContactToAdd((prevContact) => ({ ...prevContact, [field]: value }));
   };
 
-  const handleAddContact = () => {
+  const handleAddContact = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     const newName = contactToAdd.name;
     const newNumber = contactToAdd.number;
 
@@ -50,7 +60,11 @@ const ContactForm: React.FC = () => {
     );
 
     if (contactExists) {
-      toast.error(`${newName} or ${newNumber} is already in contacts`, {
+      const errorMessage = langDictionary.errorRepeatedContact[currentLanguage]
+        .replace("{name}", newName)
+        .replace("{number}", newNumber);
+
+      toast.error(errorMessage, {
         position: "top-center",
         duration: 4000,
       });
@@ -60,84 +74,66 @@ const ContactForm: React.FC = () => {
     dispatch(addContact({ name: newName, number: newNumber }));
     setContactToAdd({ name: "", number: "" });
   };
+
   const isInputsValid = () => {
     return contactToAdd.name && contactToAdd.number;
   };
 
   const nameId = nanoid();
   const numId = nanoid();
+
   return (
-    <tr key={"addContact"}>
-      <td>0.</td>
-      <td>
-        <input
-          id={nameId}
-          type="text"
-          name="name"
-          value={contactToAdd.name}
-          onChange={(e) =>
-            handleInputChange(
-              e.target.name as keyof ContactToAdd,
-              e.target.value,
-            )
-          } // zarządzanie zmianami inputu
-          required
-        />
-      </td>
-      <td>
-        <input
-          id={numId}
-          type="tel"
-          name="number"
-          pattern="^\+?[0-9]+(-[0-9]+)*$"
-          title="Only numbers"
-          value={contactToAdd.number}
-          onChange={(e) =>
-            handleInputChange(
-              e.target.name as keyof ContactToAdd,
-              e.target.value,
-            )
-          }
-          required
-        />
-      </td>
-      <td>
-        <button onClick={handleAddContact} disabled={!isInputsValid()}>
-          {langDictionary.tableButtonAddContact[currentLanguage]}
-        </button>
-      </td>
-      <td>
-        <button onClick={handleCancel}>
-          {langDictionary.tableButtonCancel[currentLanguage]}
-        </button>
-      </td>
-    </tr>
+    <li className={scss["contact-form-item"]}>
+      <form>
+        <span>00.</span>
+        <span>
+          <input
+            id={nameId}
+            type="text"
+            name="name"
+            value={contactToAdd.name}
+            placeholder={langDictionary.newName[currentLanguage]}
+            onChange={(e) =>
+              handleInputChange(
+                e.target.name as keyof ContactToAdd,
+                e.target.value,
+              )
+            }
+            required
+          />
+        </span>
+        <span>
+          <input
+            id={numId}
+            type="tel"
+            name="number"
+            title="Only numbers"
+            value={contactToAdd.number}
+            placeholder={langDictionary.newNumber[currentLanguage]}
+            onChange={(e) =>
+              handleInputChange(
+                e.target.name as keyof ContactToAdd,
+                e.target.value,
+              )
+            }
+            required
+          />
+        </span>
+        <span>
+          <button
+            onClick={(e) => handleAddContact(e)}
+            disabled={!isInputsValid()}>
+            {langDictionary.tableButtonAddContact[currentLanguage]}
+          </button>
+        </span>
+        <span>
+          <button onClick={handleCancel}>
+            {langDictionary.tableButtonCancel[currentLanguage]}
+          </button>
+        </span>
+      </form>
+    </li>
   );
-  //   return (
-  //     <>
-  //       <form className={scss.form} onSubmit={handleSubmit}>
-  //         <label htmlFor={nameId}>Name</label>
-  // <input
-  //   id={nameId}
-  //   type="text"
-  //   name="name"
-  //   pattern="^[A-Za-zÀ-ÖØ-öø-ÿąćęłńóśźżĄĆĘŁŃÓŚŹŻ' -]+$"
-  //   title="The name can only contain letters, including Polish letters, apostrophes, hyphens, and spaces."
-  //   required
-  // />
-  //         <label htmlFor={numId}>Phone number</label>
-  // <input
-  //   id={numId}
-  //   type="tel"
-  //   name="number"
-  //   pattern="^\+?\d*$"
-  //   title="Only numbers and an optional leading +"
-  //   required
-  // />
-  //         <button type="submit">Add contact</button>
-  //       </form>
-  //     </>
-  //   );
 };
 
 export default ContactForm;

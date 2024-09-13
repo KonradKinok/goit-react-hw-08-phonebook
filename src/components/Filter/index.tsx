@@ -15,7 +15,7 @@ const Filter: React.FC = () => {
 
   const searchId = nanoid();
   return (
-    <div className={scss.containerFilter}>
+    <div className={scss["container-filter"]}>
       <input
         type="text"
         id={searchId}

@@ -121,7 +121,25 @@ export const langDictionary = {
         [Languages.EN]: "Search contact",
         [Languages.PL]: "Wyszukaj kontakt"
     },
-    // addContact
+
+    //ContactForm
+    errorPhoneNumberRegex: {
+        [Languages.EN]: `The sign "{value}" is not allowed. Only numbers can be entered.`,
+        [Languages.PL]: `Znak "{value}"nie jest dozwolony. Można wpisywać tylko cyfry.`
+    },
+    errorRepeatedContact: {
+        [Languages.EN]: "{name} or {number} is already in contacts",
+        [Languages.PL]: "{name} lub {number} już istnieje w kontaktach"
+    },
+    newName: {
+        [Languages.EN]: "New name",
+        [Languages.PL]: "Nowa nazwa"
+    },
+    newNumber: {
+        [Languages.EN]: "New number",
+        [Languages.PL]: "Nowy numer"
+    },
+    // ContactForm addContact
     tableButtonAddContact: {
         [Languages.EN]: "Add",
         [Languages.PL]: "Dodaj"

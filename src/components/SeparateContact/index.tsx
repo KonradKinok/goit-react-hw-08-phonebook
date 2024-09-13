@@ -5,6 +5,7 @@ import { AppDispatch } from "../redux/store";
 import { selectLanguage } from "../redux/language/selectorsLanguage";
 import { langDictionary } from "../redux/language/constans";
 import scss from "./SeparateContact.module.scss";
+import toast from "react-hot-toast";
 
 interface Contact {
   id: string;
@@ -30,8 +31,24 @@ const SeparateContact: React.FC<SeparateContactProps> = ({
   const [editId, setEditId] = useState<string | null>(null); // śledzenie ID kontaktu w trybie edycji
   const [editedContact, setEditedContact] = useState<Contact>(contact); // lokalny stan dla edytowanego kontaktu
   const [originalContact, setOriginalContact] = useState<Contact>(contact);
+
+  const isValidPhoneNumber = (phoneNumber: string) => {
+    const regex = /^(\+?[0-9]+(-[0-9]+)*)?$/;
+    return regex.test(phoneNumber);
+  };
   // Handler do przechwytywania zmian w inputach
   const handleInputChange = (field: keyof Contact, value: string) => {
+    if (field === "number" && !isValidPhoneNumber(value)) {
+      const errorMessage = langDictionary.errorPhoneNumberRegex[
+        currentLanguage
+      ].replace("{value}", value.slice(-1));
+
+      toast.error(errorMessage, {
+        position: "top-center",
+        duration: 4000,
+      });
+      return;
+    }
     setEditedContact((prevContact) => ({ ...prevContact, [field]: value }));
   };
 
@@ -47,52 +64,73 @@ const SeparateContact: React.FC<SeparateContactProps> = ({
       setOriginalContact(contact); // Zachowaj oryginalny kontakt przed edycją
     }
   };
+
   // Handler do anulowania edycji
   const handleCancelClick = () => {
     setEditedContact(originalContact); // Przywróć oryginalny kontakt
     setEditId(null); // Reset trybu edycji
   };
+  const isButtonSaveEnabled = () => {
+    return editedContact.name && editedContact.number;
+  };
   return (
-    <tr key={contact.id}>
-      <td>{index + 1}.</td>
-      <td>
-        <input
-          type="text"
-          value={editedContact.name}
-          disabled={editId !== contact.id} // input nieaktywny, gdy nie jest w trybie edycji
-          onChange={(e) => handleInputChange("name", e.target.value)} // zarządzanie zmianami inputu
-        />
-      </td>
-      <td>
-        <input
-          type="text"
-          value={editedContact.number}
-          disabled={editId !== contact.id} // input nieaktywny, gdy nie jest w trybie edycji
-          onChange={(e) => handleInputChange("number", e.target.value)} // zarządzanie zmianami inputu
-        />
-      </td>
-      <td>
-        {editId === contact.id ? (
-          <>
-            <button onClick={handleEditClick}>
-              {langDictionary.tableButtonSave[currentLanguage]}
+    <li className={scss["contact-item"]} key={contact.id}>
+      <form>
+        <span>{String(index + 1).padStart(2, "0")}.</span>
+        <span>
+          <input
+            type="text"
+            name="name"
+            value={editedContact.name}
+            disabled={editId !== contact.id} // input nieaktywny, gdy nie jest w trybie edycji
+            onChange={(e) =>
+              handleInputChange(e.target.name as keyof Contact, e.target.value)
+            } // zarządzanie zmianami inputu
+            required
+          />
+        </span>
+        <span>
+          <input
+            type="tel"
+            name="number"
+            value={editedContact.number}
+            disabled={editId !== contact.id} // input nieaktywny, gdy nie jest w trybie edycji
+            onChange={(e) =>
+              handleInputChange(e.target.name as keyof Contact, e.target.value)
+            } // zarządzanie zmianami inputu
+            required
+          />
+        </span>
+        <span>
+          {editId === contact.id ? (
+            <>
+              <button
+                type="button"
+                name="editSave"
+                disabled={!isButtonSaveEnabled()}
+                onClick={handleEditClick}>
+                {langDictionary.tableButtonSave[currentLanguage]}
+              </button>
+              <button
+                type="button"
+                name="editCancel"
+                onClick={handleCancelClick}>
+                {langDictionary.tableButtonCancel[currentLanguage]}
+              </button>
+            </>
+          ) : (
+            <button type="button" name="editEdit" onClick={handleEditClick}>
+              {langDictionary.tableButtonEdit[currentLanguage]}
             </button>
-            <button onClick={handleCancelClick}>
-              {langDictionary.tableButtonCancel[currentLanguage]}
-            </button>
-          </>
-        ) : (
-          <button onClick={handleEditClick}>
-            {langDictionary.tableButtonEdit[currentLanguage]}
+          )}
+        </span>
+        <span>
+          <button type="button" onClick={handleDelete}>
+            {langDictionary.tableButtonDelete[currentLanguage]}
           </button>
-        )}
-      </td>
-      <td>
-        <button type="button" onClick={handleDelete}>
-          {langDictionary.tableButtonDelete[currentLanguage]}
-        </button>
-      </td>
-    </tr>
+        </span>
+      </form>
+    </li>
   );
 };
 
