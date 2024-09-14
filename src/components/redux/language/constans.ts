@@ -177,9 +177,17 @@ export const langDictionary = {
         [Languages.EN]: "Delete",
         [Languages.PL]: "Usuń"
     },
+
+    // Footer
     footerLibraries: {
         [Languages.EN]: "Libraries",
         [Languages.PL]: "Biblioteki"
+    },
+
+    // Modal Libraries
+    modalLibraries: {
+        [Languages.EN]: "Used libraries:",
+        [Languages.PL]: "Użyte biblioteki:"
     },
 
 }

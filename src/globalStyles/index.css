@@ -33,6 +33,11 @@
     --mobile-menu-color:rgb(0, 0, 139);
     --mobile-menu-close-icon-color: rgb(0, 0, 255);
     --mobile-menu-close-icon-color-hover: rgba(0, 0, 205,0.5);
+    /* modal-libraries */
+    --modal-libraries-background: rgba(0, 0, 0, 0.8);
+    --modal-libraries-link-text-color: rgb(135, 206, 235);
+    --modal-libraries-link-text-color-hover:rgb(0, 191, 255);
+    --modal-libraries-icon-color:rgb(135, 206, 250);
 }
 body {
     margin: 0 0;

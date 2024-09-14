@@ -1,12 +1,15 @@
 import scss from "./ModalLibraries.module.scss";
 import React, { useEffect } from "react";
-
+import { langDictionary } from "../redux/language/constans";
+import { selectLanguage } from "../redux/language/selectorsLanguage";
+import { useSelector } from "react-redux";
 interface ModalProps {
   closeModal: () => void;
 }
 
 // Komponent Modal w TypeScript
 export function ModalLibraries({ closeModal }: ModalProps) {
+  const currentLanguage = useSelector(selectLanguage);
   useEffect(() => {
     window.addEventListener("keydown", handleEsc);
 
@@ -32,8 +35,10 @@ export function ModalLibraries({ closeModal }: ModalProps) {
       className={scss["modal-libraries-overlay"]}
       onClick={handleClickOutside}>
       <div className={scss["modal"]}>
-        <p>Used libraries:</p>
-        <ul>
+        <p className={scss["modal-libraries-title"]}>
+          {langDictionary.modalLibraries[currentLanguage]}
+        </p>
+        <ul className={scss["container-unnumbered-list"]}>
           <li>
             <a
               href="https://react-icons.github.io/react-icons/"
@@ -91,27 +96,12 @@ export function ModalLibraries({ closeModal }: ModalProps) {
             </a>
           </li>
           <li>
-            <a href="http://" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://mhnpd.github.io/react-loader-spinner/docs/intro"
+              target="_blank"
+              rel="noopener noreferrer">
               React Loader Spinner
             </a>
-          </li>
-          <li>
-            <a href="http://" target="_blank" rel="noopener noreferrer"></a>
-          </li>
-          <li>
-            <a href="http://" target="_blank" rel="noopener noreferrer"></a>
-          </li>
-          <li>
-            <a href="http://" target="_blank" rel="noopener noreferrer"></a>
-          </li>
-          <li>
-            <a href="http://" target="_blank" rel="noopener noreferrer"></a>
-          </li>
-          <li>
-            <a href="http://" target="_blank" rel="noopener noreferrer"></a>
-          </li>
-          <li>
-            <a href="http://" target="_blank" rel="noopener noreferrer"></a>
           </li>
         </ul>
       </div>

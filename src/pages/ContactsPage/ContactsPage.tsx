@@ -28,7 +28,7 @@ function ContactsPage() {
       <Helmet>
         <title>Your contacts</title>
       </Helmet>
-      <div className={scss.phonebookContainer}>
+      <div className={scss["contacts-page-container"]}>
         <Filter />
         {error ? (
           <div>{error}</div>

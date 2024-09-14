@@ -1,14 +1,7 @@
-.tbl-header {
-    background-color: rgba(255, 255, 255, 1);
-    position: sticky;
-        top: 0; // Przykleja nagłówek do góry kontenera
-    
-        z-index: 1; // Zapewnia, że nagłówek będzie nad innymi elementami
-}
 
 .contact-list{
 display: grid;
-max-width: calc(100vw - 10px);
+max-width: calc(100vw);
 
     /* Odstępy między elementami listy */
     padding: 0;
@@ -19,7 +12,7 @@ max-width: calc(100vw - 10px);
             display: grid;
             /* Używamy siatki dla każdego elementu <li> */
             max-width: calc(100vw - 10px);
-            grid-template-columns: 5% 40% 35% 10% 10%;
+            grid-template-columns: 5% 40% 35% 75px 75px;
             // grid-template-columns: max-content max-content max-content max-content max-content;
             // grid-template-columns: auto auto auto auto auto;
             /* Kolumny ustawione procentowo */
@@ -94,7 +87,7 @@ max-width: calc(100vw - 10px);
                     transition: transform 0.3s ease-in-out;
                     background-image: linear-gradient(to right, var(--form-button-background-first), var(--form-button-background-second));
                     position: relative;
-                    
+                    overflow: hidden;
                 }
 
                 button:not(:disabled):focus,
@@ -111,6 +104,15 @@ max-width: calc(100vw - 10px);
                     opacity: 0.5;
                     cursor: not-allowed;
                 }
+
+                                @media screen and (max-width: 700px) {
+                
+                                    button {
+                                        
+                                       
+                                    }
+                
+                                }
             }
         }
             
