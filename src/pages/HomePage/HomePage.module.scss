@@ -1,16 +1,71 @@
-
-
-.container {
-    
+.container-home-page {
         display: flex;
-        align-items: 'center';
-        justify-content: 'center';
-        
+        align-items: "center";
+        justify-content: "center";
+        position: relative;
+        background-color: var(--main-background);
+
+
+        .img-container-sadman {
+
+
+                margin: 0 auto;
+                border-radius: 25px;
+                overflow: hidden;
+
+        }
+
+        .img-container-happyman {
+
+
+                bottom: 10px;
+                right: 10px;
+                border-radius: 25px;
+                border-bottom-right-radius: 50px;
+                overflow: hidden;
+
+
+        }
+
+
+        // .img-container-sadman {
+        //         width: 500px;
+        //         height: auto;
+        //         background: url(../../images/homePage/phonbook-negative.jpg);
+        //         background-size: contain;
+        //         background-repeat: no-repeat;
+        //         border-radius: 1rem;
+        //         overflow: hidden;
+        //         position: relative;
+        // }
+
+        // .img-container-happyman {
+        //         width: 500px;
+        //         height: auto;
+        //         background: url(../../images/homePage/phonebook-positive.jpg);
+        //         background-size: contain;
+        //         background-repeat: no-repeat;
+        //         border-radius: 1rem;
+        //         overflow: hidden;
+        //         position: relative;
+        // }
+
+        // .img-container-happyman::before,
+        // .img-container-sadman::before {
+        //         content: '';
+        //         position: absolute;
+        //         inset: 0;
+        //         background: inherit;
+        //         z-index: -1;
+        //         transform: translateY(1%) translateX(10%) scale(.96);
+        //         filter: blur(24px);
+        // }
+
+
 }
 
-
 .title {
-    font-weight: 500;
+        font-weight: 500;
         font-size: 48;
-        text-align: 'center';
+        text-align: center;
 }
