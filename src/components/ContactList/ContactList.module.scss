@@ -11,8 +11,8 @@ max-width: calc(100vw);
         form{
             display: grid;
             /* Używamy siatki dla każdego elementu <li> */
-            max-width: calc(100vw - 10px);
-            grid-template-columns: 5% 40% 35% 75px 75px;
+            // max-width: calc(100vw - 10px);
+            grid-template-columns: 5% 40% 35% 10% 10%;
             // grid-template-columns: max-content max-content max-content max-content max-content;
             // grid-template-columns: auto auto auto auto auto;
             /* Kolumny ustawione procentowo */
@@ -25,13 +25,15 @@ max-width: calc(100vw);
             /* Wyrównanie treści w pionie */
             border-bottom: 1px solid #070707;
             /* Dolna linia dla rozdzielenia */
+            
+            
 
             span{
                 width: 100%;
                 // border-right: 1px solid #070707;
                 padding: 0 10px;
                 font-size: 14px;
-            color: var(--form-color);
+                color: var(--form-color);
                 
                     span, a{
                         color:inherit;
@@ -105,14 +107,7 @@ max-width: calc(100vw);
                     cursor: not-allowed;
                 }
 
-                                @media screen and (max-width: 700px) {
                 
-                                    button {
-                                        
-                                       
-                                    }
-                
-                                }
             }
         }
             
@@ -122,7 +117,11 @@ max-width: calc(100vw);
             text-align: center;
         }
         
-
+@media screen and (max-width: 700px) {
+    form {
+        grid-template-columns: 5% 40% 35% 75px 75px;
+    }
+}
         }
 
 }
