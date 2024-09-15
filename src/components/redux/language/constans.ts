@@ -7,7 +7,7 @@ export const langDictionary = {
     //Nav
     navPhonebook: {
         [Languages.EN]: "Phonebook",
-        [Languages.PL]: "Książka telefoniczna",
+        [Languages.PL]: "Phonebook",
     },
     navHome: {
         [Languages.EN]: "Home",
@@ -189,5 +189,16 @@ export const langDictionary = {
         [Languages.EN]: "Used libraries:",
         [Languages.PL]: "Użyte biblioteki:"
     },
+    //HomePage
+    homePageSecondPhrase: {
+        [Languages.EN]: "Tired of the mess?<br /> Store your contacts securely in the Phonebook.",
+        [Languages.PL]: "Masz dość bałaganu?<br /> Przechowuj swoje kontakty bezpiecznie w Phonebook'u."
+    },
+    
+    homePageFirstPhrase: {
+        [Languages.EN]: "Trade paper notes for digital ease.<br /> The Phonebook keeps things organized on any device!",
+        [Languages.PL]: "Zamień papierowe notatki na cyfrową wygodę.<br /> Phonebook to porządek na każdym urządzeniu!"
+    },
+    
 
 }

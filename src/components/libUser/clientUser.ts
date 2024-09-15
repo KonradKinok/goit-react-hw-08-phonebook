@@ -7,7 +7,6 @@ const client: AxiosInstance = axios.create({
 const setAuthHeader = (token: AuthToken): void => {
   if (token) {
     client.defaults.headers.common.Authorization = `Bearer ${token}`;
-    console.log("setAuthHeader", client.defaults.headers.common.Authorization);
   } else {
     console.warn("Invalid token provided to setAuthHeader.");
   }

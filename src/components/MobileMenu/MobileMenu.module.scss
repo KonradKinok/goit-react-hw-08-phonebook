@@ -9,9 +9,11 @@
     color: var(--mobile-menu-open-icon-color);
     transition: color .75s cubic-bezier(.4, 0, .2, 1);
 }
+
 .mobile-menu-open-icon:hover {
-    color:var(--mobile-menu-open-icon-color-hover);
+    color: var(--mobile-menu-open-icon-color-hover);
 }
+
 .mobile-menu-open:hover {
     cursor: pointer;
 }
@@ -68,22 +70,19 @@
 .mobile-menu-close:focus {
     background-color: var(--mobile-menu-close-icon-color-hover);
     border: none;
-    
+
 }
 
 .mobile-menu-close-icon {
     transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    color:var(--mobile-menu-close-icon-color);
+    color: var(--mobile-menu-close-icon-color);
 }
-
 
 .mobile-menu-contacts {
     margin-top: auto;
     margin-bottom: 40px;
     color: var(--mobile-menu-color);
 }
-
-
 
 .mobile-menu-contacts-tel {
     font-style: normal;
@@ -97,54 +96,13 @@
 
 .mobile-menu-contacts-mail {
     font-style: normal;
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 1.2;
-        letter-spacing: 0.02em;
-        color: inherit;
-    
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    color: inherit;
 }
 
-.logo{
+.logo {
     margin-top: 20px;
-}
-
-.nav {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    font-weight: 800;
-    font-size: 1.5rem;
-
-    a,
-    .pLanguage {
-        color: white;
-        padding: 8px 16px;
-        border-radius: 4px;
-        text-decoration: none;
-        font-weight: 800;
-        transition: color .75s cubic-bezier(.4, 0, .2, 1);
-        user-select: none;
-    }
-
-    p {
-        color: white;
-        padding: 8px 16px;
-        border-radius: 4px;
-        text-decoration: none;
-        font-weight: 800;
-        transition: color .75s cubic-bezier(.4, 0, .2, 1);
-        user-select: none;
-    }
-
-    a:hover,
-    p:hover {
-        color: rgb(255, 69, 0);
-        cursor: pointer;
-    }
-
-    a.active {
-        color: white;
-        background-color: rgb(255, 69, 0);
-    }
 }

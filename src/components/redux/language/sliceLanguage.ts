@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LanguageState } from '../../Interface/Interface';
 
 const initialState: LanguageState = {
-  language: 'en', // Domyślny język
+  language: 'pl', // Domyślny język
 };
 
 const languageSlice = createSlice({

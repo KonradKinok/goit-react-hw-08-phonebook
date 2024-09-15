@@ -1,42 +1,41 @@
-.header-container-user-menu{
-display: flex;
-align-items: center;
-font-weight: 800;
+.header-container-user-menu {
+    display: flex;
+    align-items: center;
+    font-weight: 800;
     font-size: 1.5rem;
+
     a {
-            color: var(--header-text-color);
-            padding: 8px 16px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 800;
-            transition: color .75s cubic-bezier(.4, 0, .2, 1);
-            user-select: none;
-            
-        }
-    
-        a:hover {
-            color: var(--header-text-active-background);
-            cursor: pointer;
-        }
-    
-        a.active {
-            color: var(--header-text-color);
-            background-color: var(--header-text-active-background);
-        }
-    
-        .username {
-            color: var(--header-text-active-background);
-        }
+        color: var(--header-text-color);
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 800;
+        transition: color .75s cubic-bezier(.4, 0, .2, 1);
+        user-select: none;
+    }
+
+    a:hover {
+        color: var(--header-text-active-background);
+        cursor: pointer;
+    }
+
+    a.active {
+        color: var(--header-text-color);
+        background-color: var(--header-text-active-background);
+    }
+
+    .username {
+        color: var(--header-text-active-background);
+    }
 }
 
 @media screen and (max-width: 700px) {
     .header-container-user-menu {
         flex-flow: column-reverse nowrap;
-        align-items:flex-start;
-        
-        .username {
-                padding: 8px 16px;
-            }
-    }
+        align-items: flex-start;
 
+        .username {
+            padding: 8px 16px;
+        }
+    }
 }

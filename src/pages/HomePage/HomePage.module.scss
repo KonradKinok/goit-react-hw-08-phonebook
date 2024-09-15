@@ -1,67 +1,90 @@
 .container-home-page {
-        display: flex;
-        align-items: "center";
-        justify-content: "center";
-        position: relative;
+        display: grid;
+        grid-template-areas:
+                'imgSadman  secondPhrase'
+                'firstPhrase  imgHappyman';
+        padding: 30px 10px;
+        width: 100%;
         background-color: var(--main-background);
-
+        background-image: linear-gradient(180deg, var(--main-background) 0%, var(--header-background) 50%, var(--main-background) 100%);
+        grid-template-rows: auto auto;
+        column-gap: 10px;
+        z-index: 1;
+        color: var(--header-text-hover-color);
+        text-shadow: 14px 12px 11px rgba(83, 87, 150, 1);
+        font-weight: 600;
+        font-size: larger;
 
         .img-container-sadman {
+                grid-area: imgSadman;
+                max-width: 400px;
+                justify-self: center;
+                align-self: center;
+                position: relative;
+                display: inline-block;
+                z-index: 1;
+        }
 
-
-                margin: 0 auto;
+        .img-container-sadman::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url(../../images/homePage/phonbook-negative.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                z-index: -1;
+                transform: translateY(10%) translateX(10%) scale(0.96);
+                filter: blur(30px);
                 border-radius: 25px;
-                overflow: hidden;
-
         }
 
         .img-container-happyman {
-
-
-                bottom: 10px;
-                right: 10px;
-                border-radius: 25px;
-                border-bottom-right-radius: 50px;
-                overflow: hidden;
-
-
+                grid-area: imgHappyman;
+                max-width: 400px;
+                justify-self: center;
+                align-self: center;
+                position: relative;
+                display: inline-block;
+                z-index: 1;
         }
 
+        .img-container-happyman::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url(../../images/homePage/phonebook-positive.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                z-index: -1;
+                transform: translateY(10%) translateX(10%) scale(0.96);
+                filter: blur(30px);
+                border-radius: 10px;
+        }
 
-        // .img-container-sadman {
-        //         width: 500px;
-        //         height: auto;
-        //         background: url(../../images/homePage/phonbook-negative.jpg);
-        //         background-size: contain;
-        //         background-repeat: no-repeat;
-        //         border-radius: 1rem;
-        //         overflow: hidden;
-        //         position: relative;
-        // }
+        .img {
+                display: block;
+                border-radius: 25px;
+                position: relative;
+                z-index: 1;
+        }
 
-        // .img-container-happyman {
-        //         width: 500px;
-        //         height: auto;
-        //         background: url(../../images/homePage/phonebook-positive.jpg);
-        //         background-size: contain;
-        //         background-repeat: no-repeat;
-        //         border-radius: 1rem;
-        //         overflow: hidden;
-        //         position: relative;
-        // }
+        .first-phrase-home-page {
+                grid-area: firstPhrase;
+                justify-self: center;
+                align-self: center;
+        }
 
-        // .img-container-happyman::before,
-        // .img-container-sadman::before {
-        //         content: '';
-        //         position: absolute;
-        //         inset: 0;
-        //         background: inherit;
-        //         z-index: -1;
-        //         transform: translateY(1%) translateX(10%) scale(.96);
-        //         filter: blur(24px);
-        // }
-
-
+        .second-phrase-home-page {
+                grid-area: secondPhrase;
+                justify-self: center;
+                align-self: center;
+        }
 }
 
 .title {

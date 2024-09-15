@@ -36,7 +36,6 @@
         border: none;
         font-size: 18px;
         color: var(--form-color);
-
         border-radius: 25px;
         box-shadow: inset 2px 2px 5px #BABECC,
             inset -5px -5px 10px #ffffff73;
@@ -119,13 +118,11 @@
         padding: 15px 0 0 15px;
         display: flex;
         gap: 10px;
-
     }
 
     .field-chackbox input {
         cursor: pointer;
         width: 24px;
-
     }
 
     .privacy-policy {

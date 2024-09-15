@@ -5,181 +5,174 @@ import { FaEye, FaEyeSlash, FaRegEnvelope } from "react-icons/fa";
 import { AppDispatch } from "../redux/store";
 import { logIn } from "../redux/authUser/operationsUser.auth";
 import {
-  selectErrorConnection,
-  selectIsLoggedIn,
+ selectErrorConnection,
+ selectIsLoggedIn,
 } from "../redux/authUser/selectorsUser.auth";
 import { langDictionary } from "../redux/language/constans";
 import { selectLanguage } from "../redux/language/selectorsLanguage";
 import scss from "./LoginForm.module.scss";
 
 export const LoginForm: React.FC = () => {
-  const dispatch: AppDispatch = useDispatch();
-  const currentLanguage = useSelector(selectLanguage);
-  const errorConnection = useSelector(selectErrorConnection);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+ const dispatch: AppDispatch = useDispatch();
+ const currentLanguage = useSelector(selectLanguage);
+ const errorConnection = useSelector(selectErrorConnection);
+ const isLoggedIn = useSelector(selectIsLoggedIn);
+ const [showPassword, setShowPassword] = useState(false);
+ const [formData, setFormData] = useState({
+  email: "",
+  password: "",
+ });
+ const [errors, setErrors] = useState({
+  email: "",
+  password: "",
+ });
 
-  const [formData, setFormData] = useState({
+ useEffect(() => {
+  console.log("LoginForm -> handleSubmit->errorConnection", errorConnection);
+  if (isLoggedIn && errorConnection === null) {
+   setFormData({
     email: "",
     password: "",
-  });
+   });
+  }
+  if (errorConnection) {
+   const number = errorConnection
+    ? parseInt(errorConnection.match(/\d+/)?.[0] || "", 10)
+    : null;
+   if (number === 400) {
+    toast(`${langDictionary.loginFormErrorConnection400[currentLanguage]} `, {
+     position: "top-center",
+     duration: 4000,
+    });
+   } else {
+    toast(`${errorConnection}`, {
+     position: "top-center",
+     duration: 4000,
+    });
+   }
+  }
+ }, [errorConnection]);
 
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-  });
-  const [showPassword, setShowPassword] = useState(false);
+ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const { name, value, type, checked } = e.target;
 
-  useEffect(() => {
-    console.log("LoginForm -> handleSubmit->errorConnection", errorConnection);
-    if (isLoggedIn && errorConnection === null) {
-      setFormData({
-        email: "",
-        password: "",
-      });
-    }
-    if (errorConnection) {
-      const number = errorConnection
-        ? parseInt(errorConnection.match(/\d+/)?.[0] || "", 10)
-        : null;
-      if (number === 400) {
-        toast(
-          `${langDictionary.loginFormErrorConnection400[currentLanguage]} `,
-          {
-            position: "top-center",
-            duration: 4000,
-          },
-        );
-      } else {
-        toast(`${errorConnection}`, {
-          position: "top-center",
-          duration: 4000,
-        });
-      }
-    }
-  }, [errorConnection]);
+  setFormData((prevData) => ({
+   ...prevData,
+   [name]: type === "checkbox" ? checked : value, // Obsługa checkboxa
+  }));
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+  if (name === "email") {
+   const [localPart, domainPart] = value.split("@");
+   let emailError = "";
+   if (!localPart || localPart.length < 3) {
+    emailError = langDictionary.emailWarning[currentLanguage];
+   } else if (!domainPart) {
+    emailError = langDictionary.emailWarning2[currentLanguage];
+   } else {
+    emailError = "";
+   }
 
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: type === "checkbox" ? checked : value, // Obsługa checkboxa
+   setErrors((prevErrors) => ({
+    ...prevErrors,
+    email: emailError,
+   }));
+  }
+
+  if (name === "password") {
+   if (value.length < 7) {
+    setErrors((prevErrors) => ({
+     ...prevErrors,
+     password: langDictionary.passwordWarning[currentLanguage],
     }));
+   } else {
+    setErrors((prevErrors) => ({
+     ...prevErrors,
+     password: "",
+    }));
+   }
+  }
+ };
 
-    if (name === "email") {
-      const [localPart, domainPart] = value.split("@");
-      let emailError = "";
-      if (!localPart || localPart.length < 3) {
-        emailError = langDictionary.emailWarning[currentLanguage];
-      } else if (!domainPart) {
-        emailError = langDictionary.emailWarning2[currentLanguage];
-      } else {
-        emailError = "";
-      }
+ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
 
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        email: emailError,
-      }));
-    }
+  if (!errors.email && !errors.password) {
+   dispatch(
+    logIn({
+     email: formData.email,
+     password: formData.password,
+    }),
+   );
+  }
+ };
 
-    if (name === "password") {
-      if (value.length < 7) {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          password: langDictionary.passwordWarning[currentLanguage],
-        }));
-      } else {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          password: "",
-        }));
-      }
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (!errors.email && !errors.password) {
-      dispatch(
-        logIn({
-          email: formData.email,
-          password: formData.password,
-        }),
-      );
-    }
-  };
-
-  const isFormValid = () => {
-    return (
-      formData.email && formData.password && !errors.email && !errors.password
-    );
-  };
-
+ const isFormValid = () => {
   return (
-    <div className={scss["content"]}>
-      <div className={scss["text"]}>
-        {langDictionary.loginFormTitle[currentLanguage]}
-      </div>
-      <form onSubmit={handleSubmit}>
-        <div className={scss["field"]}>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder={langDictionary.emailField[currentLanguage]}
-            autoComplete="email"
-            required
-          />
-          <span className={`${scss["icons-input"]} `}>
-            <FaRegEnvelope />
-          </span>
-          {errors.email && (
-            <div className={`${scss["tooltip"]} ${scss["error"]}`}>
-              {errors.email}
-            </div>
-          )}
-        </div>
-
-        <div className={scss["field"]}>
-          <input
-            type={showPassword ? "text" : "password"}
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder={langDictionary.passwordField[currentLanguage]}
-            autoComplete="current-password"
-            required
-          />
-          <span
-            className={`${scss["icons-input"]} ${scss["eye-input-password"]}`}
-            onClick={() => setShowPassword((prev) => !prev)}>
-            {showPassword ? <FaEye /> : <FaEyeSlash />}
-          </span>
-          {errors.password && (
-            <div className={`${scss["tooltip"]} ${scss["error"]}`}>
-              {errors.password}
-            </div>
-          )}
-        </div>
-
-        <button type="submit" disabled={!isFormValid()}>
-          {langDictionary.signInButton[currentLanguage]}
-        </button>
-
-        <div className={scss["sign-up"]}>
-          <p>{langDictionary.dontHaveAnAccountText[currentLanguage]}</p>
-          <p>
-            <a href="register">
-              {langDictionary.registerNowText[currentLanguage]}
-            </a>
-          </p>
-        </div>
-      </form>
-    </div>
+   formData.email && formData.password && !errors.email && !errors.password
   );
-  // franekdolas@gmail.com
-  //   franekdolas2024
+ };
+
+ return (
+  <div className={scss["content"]}>
+   <div className={scss["text"]}>
+    {langDictionary.loginFormTitle[currentLanguage]}
+   </div>
+   <form onSubmit={handleSubmit}>
+    <div className={scss["field"]}>
+     <input
+      type="email"
+      name="email"
+      value={formData.email}
+      onChange={handleChange}
+      placeholder={langDictionary.emailField[currentLanguage]}
+      autoComplete="email"
+      required
+     />
+     <span className={`${scss["icons-input"]} `}>
+      <FaRegEnvelope />
+     </span>
+     {errors.email && (
+      <div className={`${scss["tooltip"]} ${scss["error"]}`}>
+       {errors.email}
+      </div>
+     )}
+    </div>
+
+    <div className={scss["field"]}>
+     <input
+      type={showPassword ? "text" : "password"}
+      name="password"
+      value={formData.password}
+      onChange={handleChange}
+      placeholder={langDictionary.passwordField[currentLanguage]}
+      autoComplete="current-password"
+      required
+     />
+     <span
+      className={`${scss["icons-input"]} ${scss["eye-input-password"]}`}
+      onClick={() => setShowPassword((prev) => !prev)}>
+      {showPassword ? <FaEye /> : <FaEyeSlash />}
+     </span>
+     {errors.password && (
+      <div className={`${scss["tooltip"]} ${scss["error"]}`}>
+       {errors.password}
+      </div>
+     )}
+    </div>
+
+    <button type="submit" disabled={!isFormValid()}>
+     {langDictionary.signInButton[currentLanguage]}
+    </button>
+
+    <div className={scss["sign-up"]}>
+     <p>{langDictionary.dontHaveAnAccountText[currentLanguage]}</p>
+     <p>
+      <a href="register">{langDictionary.registerNowText[currentLanguage]}</a>
+     </p>
+    </div>
+   </form>
+  </div>
+ );
+ // franekdolas@gmail.com
+ //   franekdolas2024
 };

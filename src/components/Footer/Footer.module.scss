@@ -8,15 +8,15 @@
     background-color: var(--footer-background);
     padding: 15px 10px;
     color: white;
-    
     box-shadow: inset 0px 2px 1px -1px rgba(255, 255, 255, 0.2),
         0px 1px 1px 0px rgba(255, 255, 255, 0.14), 0px 1px 3px 0px rgba(255, 253, 253, 0.12);
     margin: auto auto
 }
 
-.footer-container{
-display: flex;
-gap: 20px;
+.footer-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .footer-logo {
@@ -26,18 +26,20 @@ gap: 20px;
     align-items: center;
 }
 
-.footer-libraries{
+.footer-libraries {
     display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
+    flex-flow: column nowrap;
+    align-items: center;
     color: var(--footer-text-color);
     transition: color .75s cubic-bezier(.4, 0, .2, 1);
     cursor: pointer;
 }
+
 .footer-libraries:hover {
     color: var(--footer-text-color-hover);
     cursor: pointer;
 }
+
 .footer-date {
     align-self: flex-end;
     color: var(--footer-text-color);

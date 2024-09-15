@@ -2,7 +2,8 @@
     display: flex;
     font-weight: 800;
     font-size: 1.5rem;
-white-space: nowrap;
+    white-space: nowrap;
+
     a {
         color: var(--header-text-color);
         padding: 8px 16px;
@@ -11,7 +12,6 @@ white-space: nowrap;
         font-weight: 800;
         transition: color .75s cubic-bezier(.4, 0, .2, 1);
         user-select: none;
-        
     }
 
     a:hover {
@@ -29,10 +29,8 @@ white-space: nowrap;
     }
 }
 
-
 @media screen and (max-width: 700px) {
     .nav {
         flex-flow: column nowrap;
     }
-
 }

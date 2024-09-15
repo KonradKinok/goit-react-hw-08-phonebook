@@ -1,10 +1,10 @@
-.header{
-    display:flex;
+.header {
+    display: flex;
     justify-content: space-between;
     background-color: var(--header-background);
     padding: 15px;
-white-space: nowrap;
-   
+    white-space: nowrap;
+
 }
 
 .title {
@@ -18,7 +18,7 @@ white-space: nowrap;
     color: var(--header-text-active-background);
 }
 
-.container-appbar{
+.container-appbar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;

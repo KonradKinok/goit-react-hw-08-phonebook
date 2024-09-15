@@ -1,62 +1,46 @@
+.contact-list {
+    display: grid;
+    max-width: calc(100vw);
+    row-gap: 10px;
 
-.contact-list{
-display: grid;
-max-width: calc(100vw);
-
-    /* Odstępy między elementami listy */
-    padding: 0;
-    margin: 0;
     li {
-       
-        form{
+        form {
             display: grid;
-            /* Używamy siatki dla każdego elementu <li> */
             max-width: calc(100vw - 50px);
             grid-template-columns: 5% 40% 35% 10% 10%;
-            // grid-template-columns: max-content max-content max-content max-content max-content;
-            // grid-template-columns: auto auto auto auto auto;
-            /* Kolumny ustawione procentowo */
-            
-            /* Odstępy między kolumnami */
-            
+            column-gap: 5px;
             list-style: none;
-            /* Usuwamy punktory listy */
             align-items: center;
-            /* Wyrównanie treści w pionie */
+            justify-content: start;
             border-bottom: 1px solid #070707;
-            /* Dolna linia dla rozdzielenia */
             text-transform: capitalize;
-            
 
-            span{
-                width: 100%;
-                // border-right: 1px solid #070707;
-                padding: 0 10px;
-                font-size: 14px;
+            span {
+                font-size: 18px;
                 color: var(--form-color);
-                
-                    span, a{
-                        color:inherit;
-                    }
 
-                    a{
-                        padding: 0 10px;
-                    }
-                input{
+                span,
+                a {
+                    color: inherit;
+                }
+
+                a {
+                    padding: 0 10px;
+                }
+
+                input {
                     font-size: inherit;
                     width: 100%;
-                    height: 100%;
                     padding-left: 10px;
                     padding-right: 10px;
                     outline: none;
                     border: none;
-                    
                     color: inherit;
-                
                     border-radius: 5px;
                     box-shadow: inset 2px 2px 5px #BABECC,
                         inset -5px -5px 10px #ffffff73;
                 }
+
                 input::placeholder {
                     color: inherit;
                 }
@@ -65,15 +49,15 @@ max-width: calc(100vw);
                     outline: auto;
                     box-shadow: inset 1px 1px 2px #BABECC,
                         inset -1px -1px 2px #ffffff73;
-                        font-size: 18px;
+                    font-size: 22px;
                 }
 
-                                input:-webkit-autofill,
-                                input:-webkit-autofill:focus {
-                                    transition: background-color 0s 600000s, color 0s 600000s !important;
-                                }
+                input:-webkit-autofill,
+                input:-webkit-autofill:focus {
+                    transition: background-color 0s 600000s, color 0s 600000s !important;
+                }
 
-                button{
+                button {
                     font-size: inherit;
                     line-height: 20px;
                     margin: 2px auto;
@@ -105,37 +89,29 @@ max-width: calc(100vw);
                     opacity: 0.5;
                     cursor: not-allowed;
                 }
-
-                
             }
         }
-            
-        .span-title{
+
+        .span-title {
             font-size: 18px;
             font-weight: 600;
             text-align: center;
         }
-        
-@media screen and (max-width: 700px) {
-    form {
-        // grid-template-columns: 5% 20% 15% 30% 30%;
+
+        @media screen and (max-width: 700px) {
+            form {
+                span {
+                    font-size: 10px;
+
+                    input:focus {
+                        font-size: 11px;
+                    }
+                }
+            }
+
+            .span-title {
+                font-size: 14px;
+            }
+        }
     }
 }
-        }
-
-}
-
-
-
-
-//  button::before {
-//      content: '';
-//      position: absolute;
-//      inset: 0;
-//      background: inherit;
-//      z-index: -1;
-//      transform: translateY(20%) scale(.96);
-//      filter: blur(24px);
-//  }
-
- 

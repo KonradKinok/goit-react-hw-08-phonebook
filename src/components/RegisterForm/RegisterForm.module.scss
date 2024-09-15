@@ -35,16 +35,15 @@
         border: none;
         font-size: 18px;
         color: var(--form-color);
-        
         border-radius: 25px;
         box-shadow: inset 2px 2px 5px #BABECC,
             inset -5px -5px 10px #ffffff73;
     }
 
     .field input::placeholder {
-    color: var(--form-color);
+        color: var(--form-color);
     }
-    
+
     .field input:focus {
         box-shadow: inset 1px 1px 2px #BABECC,
             inset -1px -1px 2px #ffffff73;
@@ -79,13 +78,13 @@
         font-size: 18px;
         line-height: 50px;
         font-weight: 600;
-        color:var(--form-button-color);
+        color: var(--form-button-color);
         border-radius: 25px;
         border: none;
         outline: none;
         cursor: pointer;
         transition: transform 0.3s ease-in-out;
-        background-image : linear-gradient(to right, var(--form-button-background-first), var(--form-button-background-second));
+        background-image: linear-gradient(to right, var(--form-button-background-first), var(--form-button-background-second));
         position: relative;
     }
 
@@ -100,34 +99,32 @@
     }
 
     button:not(:disabled):focus,
-    button:not(:disabled):hover{
+    button:not(:disabled):hover {
         background-image: linear-gradient(to left, var(--form-button-background-first), var(--form-button-background-second));
         transform: scale(1.01);
     }
 
-    button:not(:disabled):active{
+    button:not(:disabled):active {
         transform: scale(0.98);
     }
 
-    button:disabled{
+    button:disabled {
         opacity: 0.5;
-        cursor:not-allowed;
+        cursor: not-allowed;
     }
 
     .field-chackbox {
         padding: 15px 0 0 15px;
         display: flex;
         gap: 10px;
-        
     }
 
     .field-chackbox input {
         cursor: pointer;
         width: 24px;
-
     }
 
-    .privacy-policy{
+    .privacy-policy {
         margin: 10px 0;
         color: var(--form-color);
         font-size: 16px;
@@ -150,16 +147,17 @@
         text-decoration: underline;
     }
 
-    .icons-input{
+    .icons-input {
         position: absolute;
         right: 0;
         top: 50%;
         transform: translateY(-50%);
     }
-    .eye-input-password{
+
+    .eye-input-password {
         cursor: pointer;
     }
-    
+
     .tooltip {
         position: absolute;
         top: -30px;

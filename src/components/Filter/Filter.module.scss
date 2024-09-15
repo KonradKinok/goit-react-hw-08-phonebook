@@ -1,4 +1,4 @@
-.container-filter{
+.container-filter {
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -11,9 +11,7 @@
         padding-right: 10px;
         outline: none;
         border: none;
-
         color: var(--form-color);
-
         border-radius: 5px;
         box-shadow: inset 2px 2px 5px #BABECC,
             inset -5px -5px 10px #ffffff73;
@@ -30,9 +28,18 @@
         font-size: 18px;
     }
 
+    @media screen and (max-width: 700px) {
+        input {
+            font-size: 12px;
+        }
+
+        input:focus {
+            font-size: 14px;
+        }
+    }
+
     input:-webkit-autofill,
     input:-webkit-autofill:focus {
         transition: background-color 0s 600000s, color 0s 600000s !important;
     }
-
 }

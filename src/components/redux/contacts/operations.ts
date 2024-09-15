@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { client } from "../../libUser/clientUser";
-import { Contact, AddContactPayload } from "../../Interface/Interface";
+import { Contact, AddContact } from "../../Interface/Interface";
 
 export const fetchContacts = createAsyncThunk<Contact[], void, { rejectValue: string }>(
   "contacts/fetchAll",
@@ -14,7 +14,7 @@ export const fetchContacts = createAsyncThunk<Contact[], void, { rejectValue: st
   },
 );
 
-export const addContact = createAsyncThunk<Contact, AddContactPayload, { rejectValue: string }>(
+export const addContact = createAsyncThunk<Contact, AddContact, { rejectValue: string }>(
   "contacts/addContact",
   async (contactData, thunkAPI) => {
     try {
