@@ -6,23 +6,22 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import { store, persistor } from "./components/redux/store";
 import { App } from "./components/App";
-import { Loader } from "./components/Loader/Loader";
 
 const rootElement = document.getElementById("root");
 
 if (rootElement) {
  ReactDOM.createRoot(rootElement).render(
-  // <React.StrictMode>
-  <Provider store={store}>
-   <PersistGate loading={null} persistor={persistor}>
-    {/* <BrowserRouter basename="/goit-react-hw-08-phonebook/"> */}
-    <HashRouter>
-     <App />
-    </HashRouter>
-    {/* </BrowserRouter> */}
-   </PersistGate>
-  </Provider>,
-  // </React.StrictMode>,
+  <React.StrictMode>
+   <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+     {/* <BrowserRouter basename="/goit-react-hw-08-phonebook/"> */}
+     <HashRouter>
+      <App />
+     </HashRouter>
+     {/* </BrowserRouter> */}
+    </PersistGate>
+   </Provider>
+  </React.StrictMode>,
  );
 } else {
  console.error("Root element not found");
