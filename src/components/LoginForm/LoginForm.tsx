@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash, FaRegEnvelope } from "react-icons/fa";
 import { AppDispatch } from "../redux/store";
@@ -167,7 +168,9 @@ export const LoginForm: React.FC = () => {
     <div className={scss["sign-up"]}>
      <p>{langDictionary.dontHaveAnAccountText[currentLanguage]}</p>
      <p>
-      <a href="register">{langDictionary.registerNowText[currentLanguage]}</a>
+      <Link to="/register">
+       {langDictionary.registerNowText[currentLanguage]}
+      </Link>
      </p>
     </div>
    </form>

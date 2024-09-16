@@ -43,7 +43,7 @@ export const App: React.FC = () => {
      element={<PrivateRoute redirectTo="/login" component={ContactsPage} />}
     />
    </Route>
-   <Route path="*" element={<HomePage />} />
+   {/* <Route path="*" element={<HomePage />} /> */}
   </Routes>
  );
 };
