@@ -6,9 +6,11 @@ import { AppDispatch } from "../redux/store";
 import { selectLanguage } from "../redux/language/selectorsLanguage";
 import { langDictionary } from "../redux/language/constans";
 import scss from "./UserMenu.module.scss";
+
 interface UserMenuProps {
  onLinkClick?: () => void; // Opcjonalny prop
 }
+
 export const UserMenu: React.FC<UserMenuProps> = ({ onLinkClick }) => {
  const dispatch: AppDispatch = useDispatch();
  const { user } = useAuthUser();

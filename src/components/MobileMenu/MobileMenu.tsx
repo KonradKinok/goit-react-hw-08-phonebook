@@ -27,7 +27,7 @@ export const MobileMenu: React.FC = () => {
    </button>
 
    <div
-    className={`${scss["mobile-menu-container"]} ${isMenuMobileModalOpen ? scss["is-open"] : ""}`}>
+    className={`${scss["mobile-menu-container"]} ${isMenuMobileModalOpen ? scss["is-open"] : ""} `}>
     <div className={scss["mobile-menu-wrapper"]}>
      <button
       className={scss["mobile-menu-close"]}

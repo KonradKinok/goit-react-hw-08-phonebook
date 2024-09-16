@@ -34,9 +34,18 @@ export const Footer: React.FC = () => {
    <div className={scss["footer-date"]}>
     <p>15.09.2024</p>
    </div>
-   {isModalLibrariesOpen && (
-    <ModalLibraries closeModal={handleMenuMobileModalOpen} />
-   )}
+
+   <ModalLibraries
+    closeModal={handleMenuMobileModalOpen}
+    isModalLibrariesOpen={isModalLibrariesOpen}
+   />
+
+   {/* {isModalLibrariesOpen && (
+    <ModalLibraries
+     closeModal={handleMenuMobileModalOpen}
+     isModalLibrariesOpen={isModalLibrariesOpen}
+    />
+   )} */}
   </footer>
  );
 };

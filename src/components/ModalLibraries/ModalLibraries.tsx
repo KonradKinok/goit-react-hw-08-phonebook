@@ -5,10 +5,14 @@ import { selectLanguage } from "../redux/language/selectorsLanguage";
 import scss from "./ModalLibraries.module.scss";
 interface ModalProps {
  closeModal: () => void;
+ isModalLibrariesOpen: boolean;
 }
 
 // Komponent Modal w TypeScript
-export function ModalLibraries({ closeModal }: ModalProps) {
+export function ModalLibraries({
+ closeModal,
+ isModalLibrariesOpen,
+}: ModalProps) {
  const currentLanguage = useSelector(selectLanguage);
 
  useEffect(() => {
@@ -32,7 +36,9 @@ export function ModalLibraries({ closeModal }: ModalProps) {
  };
 
  return (
-  <div className={scss["modal-libraries-overlay"]} onClick={handleClickOutside}>
+  <div
+   className={`${scss["modal-libraries-overlay"]} ${isModalLibrariesOpen ? scss["is-open"] : ""} `}
+   onClick={handleClickOutside}>
    <div className={scss["modal"]}>
     <p className={scss["modal-libraries-title"]}>
      {langDictionary.modalLibraries[currentLanguage]}
