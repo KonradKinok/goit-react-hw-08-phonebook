@@ -24,15 +24,14 @@ export const Footer: React.FC = () => {
      <img src={footerLogoImage} alt="logoImage" width="24" />
      <img src={footerLogoText} alt="logoText" />
     </div>
-    <div
-     className={scss["footer-libraries"]}
-     onClick={handleMenuMobileModalOpen}>
-     <IoLibrary size={32} />
-     <small>{langDictionary.footerLibraries[currentLanguage]}</small>
-    </div>
-   </div>
-   <div className={scss["footer-date"]}>
-    <p>15.09.2024</p>
+
+    <address>
+     <ul>
+      <li>
+       <a href="mailto:3k.nexgen@gmail.com">3K.nexgen@gmail.com</a>
+      </li>
+     </ul>
+    </address>
    </div>
 
    <ModalLibraries
@@ -40,12 +39,17 @@ export const Footer: React.FC = () => {
     isModalLibrariesOpen={isModalLibrariesOpen}
    />
 
-   {/* {isModalLibrariesOpen && (
-    <ModalLibraries
-     closeModal={handleMenuMobileModalOpen}
-     isModalLibrariesOpen={isModalLibrariesOpen}
-    />
-   )} */}
+   <div className={scss["footer-container-libraries-date"]}>
+    <div
+     className={scss["footer-libraries"]}
+     onClick={handleMenuMobileModalOpen}>
+     <IoLibrary size={32} />
+     <small>{langDictionary.footerLibraries[currentLanguage]}</small>
+    </div>
+    <div className={scss["footer-date"]}>
+     <p>15.09.2024</p>
+    </div>
+   </div>
   </footer>
  );
 };
