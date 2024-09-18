@@ -45,16 +45,9 @@ export const MobileMenu: React.FC = () => {
       <ul>
        <li>
         <a
-         className={scss["mobile-menu-contacts-tel"]}
-         href="tel:+110001111111">
-         +11 (000) 111-11-11
-        </a>
-       </li>
-       <li>
-        <a
          className={scss["mobile-menu-contacts-mail"]}
-         href="mailto:info@devstudio.com">
-         info@devstudio.com
+         href="mailto:3k.nexgen@gmail.com">
+         3K.nexgen@gmail.com
         </a>
        </li>
       </ul>
