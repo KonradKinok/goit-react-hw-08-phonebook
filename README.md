@@ -1,10 +1,16 @@
 # goit-react-hw-07-phonebook
 
-Link do repozytorium:
+# GitHub Page
+
+Link to repository:
 https://github.com/KonradKinok/goit-react-hw-08-phonebook
 
-Link do strony:
+Link to website:
 https://konradkinok.github.io/goit-react-hw-08-phonebook/
+
+# Description
+
+The website offers the possibility of collecting phone numbers after registering and logging into the created account.
 
 # React + Vite
 

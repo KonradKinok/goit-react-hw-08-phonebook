@@ -8,7 +8,8 @@ import { AppDispatch } from "../redux/store";
 import { selectLanguage } from "../redux/language/selectorsLanguage";
 import { langDictionary } from "../redux/language/constans";
 import { AddContact } from "../Interface/Interface";
-
+import { FaUserPlus } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
 const ContactForm: React.FC = () => {
  const dispatch = useDispatch<AppDispatch>();
  const contacts = useSelector(selectContacts);
@@ -66,6 +67,10 @@ const ContactForm: React.FC = () => {
 
   dispatch(addContact({ name: newName, number: newNumber }));
   setContactToAdd({ name: "", number: "" });
+  const addContactMessage = langDictionary.addContactMessage[currentLanguage]
+   .replace("{name}", newName)
+   .replace("{number}", newNumber);
+  toast.success(addContactMessage);
  };
 
  const isInputsValid = () => {
@@ -108,12 +113,12 @@ const ContactForm: React.FC = () => {
     </span>
     <span>
      <button onClick={(e) => handleAddContact(e)} disabled={!isInputsValid()}>
-      {langDictionary.tableButtonAddContact[currentLanguage]}
+      <FaUserPlus />
      </button>
     </span>
     <span>
      <button onClick={handleCancel}>
-      {langDictionary.tableButtonCancel[currentLanguage]}
+      <RxCross2 />
      </button>
     </span>
    </form>

@@ -131,6 +131,10 @@ export const langDictionary = {
         [Languages.EN]: "{name} or {number} is already in contacts",
         [Languages.PL]: "{name} lub {number} już istnieje w kontaktach"
     },
+    addContactMessage: {
+        [Languages.EN]: "{name}: {number} added to contacts",
+        [Languages.PL]: "{name}: {number} dodano do kontaktów"
+    },
     newName: {
         [Languages.EN]: "New name",
         [Languages.PL]: "Nowa nazwa"
@@ -174,10 +178,13 @@ export const langDictionary = {
         [Languages.PL]: "Edytuj"
     },
     tableButtonDelete: {
-        [Languages.EN]: "Delete",
-        [Languages.PL]: "Usuń"
+        [Languages.EN]: "Are you sure you want to delete the contact?",
+        [Languages.PL]: "Czy na pewno chcesz usunąć kontakt?"
     },
-
+contactDeleted: {
+        [Languages.EN]: "The contact has been deleted",
+        [Languages.PL]: "Kontakt został usunięty"
+    },
     // Footer
     footerLibraries: {
         [Languages.EN]: "Libraries",

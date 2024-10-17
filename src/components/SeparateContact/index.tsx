@@ -5,6 +5,10 @@ import { AppDispatch } from "../redux/store";
 import { deleteContact } from "../redux/contacts/operations";
 import { selectLanguage } from "../redux/language/selectorsLanguage";
 import { langDictionary } from "../redux/language/constans";
+import { FaUserEdit } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
+import { FaRegSave } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 interface Contact {
  id: string;
@@ -24,7 +28,14 @@ const SeparateContact: React.FC<SeparateContactProps> = ({
  editContact,
 }) => {
  const dispatch = useDispatch<AppDispatch>();
- const handleDelete = () => dispatch(deleteContact(contact.id));
+ const handleDelete = () => {
+  const confirmMessage = langDictionary.tableButtonDelete[currentLanguage];
+  const isConfirmed = window.confirm(confirmMessage);
+  if (isConfirmed) {
+   dispatch(deleteContact(contact.id));
+   toast.success(langDictionary.contactDeleted[currentLanguage]);
+  }
+ };
  const currentLanguage = useSelector(selectLanguage);
 
  const [editId, setEditId] = useState<string | null>(null);
@@ -113,21 +124,21 @@ const SeparateContact: React.FC<SeparateContactProps> = ({
         name="editSave"
         disabled={!isButtonSaveEnabled()}
         onClick={handleEditClick}>
-        {langDictionary.tableButtonSave[currentLanguage]}
+        <FaRegSave />
        </button>
        <button type="button" name="editCancel" onClick={handleCancelClick}>
-        {langDictionary.tableButtonCancel[currentLanguage]}
+        <RxCross2 />
        </button>
       </>
      ) : (
       <button type="button" name="editEdit" onClick={handleEditClick}>
-       {langDictionary.tableButtonEdit[currentLanguage]}
+       <FaUserEdit />
       </button>
      )}
     </span>
     <span>
      <button type="button" onClick={handleDelete}>
-      {langDictionary.tableButtonDelete[currentLanguage]}
+      <FaRegTrashAlt />
      </button>
     </span>
    </form>

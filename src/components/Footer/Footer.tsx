@@ -46,9 +46,6 @@ export const Footer: React.FC = () => {
      <IoLibrary size={32} />
      <small>{langDictionary.footerLibraries[currentLanguage]}</small>
     </div>
-    <div className={scss["footer-date"]}>
-     <p>15.09.2024</p>
-    </div>
    </div>
   </footer>
  );
