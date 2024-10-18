@@ -1,7 +1,7 @@
 [build]
 command = "npm run build"
 publish = "/dist"
-base = "/goit-react-hw-08-phonebook/"
+base = "/"
 
 [[redirects]]
 from= "/*"
