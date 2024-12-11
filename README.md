@@ -12,6 +12,10 @@ Link to website:
 
 <https://phonebook-3k.netlify.app/>
 
+## VercelPage
+
+<https://phonebook2024.vercel.app/>
+
 ## Description
 
 The website offers the possibility of collecting phone numbers after registering and logging into the created account.
