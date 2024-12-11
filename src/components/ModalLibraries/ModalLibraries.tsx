@@ -108,6 +108,14 @@ export function ModalLibraries({
        React Loader Spinner
       </a>
      </li>
+     <li>
+      <a
+       href="https://www.fusejs.io/"
+       target="_blank"
+       rel="noopener noreferrer">
+       Fuse.js
+      </a>
+     </li>
     </ul>
    </div>
   </div>

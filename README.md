@@ -1,4 +1,4 @@
-# goit-react-hw-07-phonebook
+# goit-react-hw-08-phonebook
 
 # GitHub Page
 
@@ -41,3 +41,5 @@ Currently, two official plugins are available:
    npm i react
 7. [Axios](https://axios-http.com/docs/intro)
    npm install axios
+8. [Fuse.js](https://www.fusejs.io/)
+   npm install fuse.js

@@ -18,7 +18,7 @@ const ContactList: React.FC = () => {
  const sortedContacts = filteredContacts.sort((a, b) =>
   a.name.localeCompare(b.name),
  );
-
+ console.log({ sortedContacts });
  const handleEditContact = (updatedContact: Contact) => {
   dispatch(editContactAction(updatedContact));
   console.log("Contact updated:", updatedContact);
