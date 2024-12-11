@@ -5,9 +5,6 @@
 Link to repository:
 <https://github.com/KonradKinok/goit-react-hw-08-phonebook>
 
-Link to website:
-<https://konradkinok.github.io/goit-react-hw-08-phonebook/>
-
 ## Netlify Page
 
 <https://phonebook-3k.netlify.app/>
