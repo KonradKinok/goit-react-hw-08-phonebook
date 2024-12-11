@@ -1,22 +1,22 @@
 # goit-react-hw-08-phonebook
 
-# GitHub Page
+## GitHub Page
 
 Link to repository:
-https://github.com/KonradKinok/goit-react-hw-08-phonebook
+<https://github.com/KonradKinok/goit-react-hw-08-phonebook>
 
 Link to website:
-https://konradkinok.github.io/goit-react-hw-08-phonebook/
+<https://konradkinok.github.io/goit-react-hw-08-phonebook/>
 
-# Netlify Page
+## Netlify Page
 
-https://phonebook-3k.netlify.app/
+<https://phonebook-3k.netlify.app/>
 
-# Description
+## Description
 
 The website offers the possibility of collecting phone numbers after registering and logging into the created account.
 
-# React + Vite
+## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 Currently, two official plugins are available:
