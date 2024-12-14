@@ -17,6 +17,8 @@ Link to repository:
 
 The website offers the possibility of collecting phone numbers after registering and logging into the created account.
 
+l:bronekskowronek@gmail.com
+h: bronekskowronek2024
 ## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

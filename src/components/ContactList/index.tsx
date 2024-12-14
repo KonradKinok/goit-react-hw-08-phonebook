@@ -12,13 +12,13 @@ import scss from "./ContactList.module.scss";
 
 const ContactList: React.FC = () => {
  const dispatch = useDispatch<AppDispatch>();
- const filteredContacts = useSelector(selectVisibleContacts);
  const currentLanguage = useSelector(selectLanguage);
+ const filteredContacts = useSelector(selectVisibleContacts);
 
- const sortedContacts = filteredContacts.sort((a, b) =>
+ const sortedContacts = [...filteredContacts].sort((a, b) =>
   a.name.localeCompare(b.name),
  );
- console.log({ sortedContacts });
+
  const handleEditContact = (updatedContact: Contact) => {
   dispatch(editContactAction(updatedContact));
   console.log("Contact updated:", updatedContact);
