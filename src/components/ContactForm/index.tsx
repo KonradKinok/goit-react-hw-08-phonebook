@@ -24,7 +24,7 @@ const ContactForm: React.FC = () => {
  };
 
  const isValidPhoneNumber = (phoneNumber: string) => {
-  const regex = /^(\+?[0-9]+(-[0-9]+)*)?$/;
+  const regex = /^[0-9]+$/;
   return regex.test(phoneNumber);
  };
 
